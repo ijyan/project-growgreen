@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Avatar } from '@mui/material';
 import axios from 'axios';
 import isEqual from 'lodash/isEqual';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import MyPageTabs from '../../../components/myPageTab/MyPageTab';
 import { User, FormData } from '../../../utils/types';
 import useStore from '../../../stores/user.store';
@@ -193,97 +194,104 @@ function Index() {
   };
 
   return (
-    <S.Container>
-      <S.ContainerInner>
-        <MyPageTabs index={0} />
-        <S.Content>
-          <S.Form>
-            <S.InputWrapper>
-              <S.Title>회원정보</S.Title>
-              <Input
-                label="이름"
-                type="name"
-                name="name"
-                placeholder="이름 입력"
-                value={formData.name}
-                error={!!errors.name}
-                helperText={errors.name}
-                onChange={handleInputChange('name')}
-              />
-              <Input
-                label="닉네임"
-                type="nickName"
-                name="nickName"
-                placeholder="닉네임 입력"
-                value={formData.nickName}
-                error={!!errors.nickName}
-                helperText={errors.nickName}
-                onChange={handleInputChange('nickName')}
-              />
-              <Input
-                label="비밀번호"
-                type="password"
-                name="userPassword"
-                placeholder="8~12자리 / 영문 대소문자, 숫자, 특수문자 조합"
-                value={formData.password}
-                error={!!errors.password}
-                helperText={errors.password}
-                onChange={handleInputChange('password')}
-              />
-              <Input
-                label="이메일"
-                type="email"
-                name="userEmail"
-                placeholder="email@example.com"
-                value={formData.email}
-                error={!!errors.email}
-                helperText={errors.email}
-                onChange={handleInputChange('email')}
-              />
-            </S.InputWrapper>
+    <>
+      <HelmetProvider>
+        <Helmet>
+          <title>Grow Green - 프로필</title>
+        </Helmet>
+      </HelmetProvider>
+      <S.Container>
+        <S.ContainerInner>
+          <MyPageTabs index={0} />
+          <S.Content>
+            <S.Form>
+              <S.InputWrapper>
+                <S.Title>회원정보</S.Title>
+                <Input
+                  label="이름"
+                  type="name"
+                  name="name"
+                  placeholder="이름 입력"
+                  value={formData.name}
+                  error={!!errors.name}
+                  helperText={errors.name}
+                  onChange={handleInputChange('name')}
+                />
+                <Input
+                  label="닉네임"
+                  type="nickName"
+                  name="nickName"
+                  placeholder="닉네임 입력"
+                  value={formData.nickName}
+                  error={!!errors.nickName}
+                  helperText={errors.nickName}
+                  onChange={handleInputChange('nickName')}
+                />
+                <Input
+                  label="비밀번호"
+                  type="password"
+                  name="userPassword"
+                  placeholder="8~12자리 / 영문 대소문자, 숫자, 특수문자 조합"
+                  value={formData.password}
+                  error={!!errors.password}
+                  helperText={errors.password}
+                  onChange={handleInputChange('password')}
+                />
+                <Input
+                  label="이메일"
+                  type="email"
+                  name="userEmail"
+                  placeholder="email@example.com"
+                  value={formData.email}
+                  error={!!errors.email}
+                  helperText={errors.email}
+                  onChange={handleInputChange('email')}
+                />
+              </S.InputWrapper>
 
-            <S.AvatarWrapper>
-              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-              <label htmlFor="profile-image-input">
-                <span>변경</span>
-                <input
-                  id="profile-image-input"
-                  type="file"
-                  style={{
-                    display: 'none',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                  accept="image/jpg,image/png,image/jpeg"
-                  name="profileImage"
-                  onChange={onChange}
-                  ref={fileInput}
-                />
-                <Avatar
-                  src={profileImage}
-                  alt="avatar"
-                  sx={{
-                    width: 160,
-                    height: 160,
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    border: '1px solid #eaedf4',
-                  }}
-                />
-              </label>
-            </S.AvatarWrapper>
-          </S.Form>
-          <S.SubmitButton
-            type="submit"
-            onClick={handleSave}
-            disabled={isFormDataChanged}
-          >
-            저장
-          </S.SubmitButton>
-        </S.Content>
-      </S.ContainerInner>
-    </S.Container>
+              <S.AvatarWrapper>
+                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                <label htmlFor="profile-image-input">
+                  <span>변경</span>
+                  <input
+                    id="profile-image-input"
+                    type="file"
+                    style={{
+                      display: 'none',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                    accept="image/jpg,image/png,image/jpeg"
+                    name="profileImage"
+                    onChange={onChange}
+                    ref={fileInput}
+                  />
+                  <Avatar
+                    src={profileImage}
+                    alt="avatar"
+                    sx={{
+                      width: 160,
+                      height: 160,
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      border: '1px solid #eaedf4',
+                    }}
+                  />
+                </label>
+              </S.AvatarWrapper>
+            </S.Form>
+            <S.SubmitButton
+              type="submit"
+              onClick={handleSave}
+              disabled={isFormDataChanged}
+            >
+              저장
+            </S.SubmitButton>
+          </S.Content>
+        </S.ContainerInner>
+      </S.Container>
+    </>
   );
 }
 

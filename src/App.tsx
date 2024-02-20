@@ -3,8 +3,6 @@ import './App.css';
 import { Route, Routes } from 'react-router-dom';
 
 // 404page
-import axios from 'axios';
-import { useCookies } from 'react-cookie';
 import Page404 from './pages/page404';
 // auth
 import Join from './pages/auth/join';
@@ -29,30 +27,8 @@ import Community from './pages/community';
 import MyPage from './pages/myPage';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
-import useStore from './stores/user.store';
 
 function App() {
-  const { user, setUser } = useStore();
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token && !user) {
-      axios('http://localhost:4080/api/user/', {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-        .then(response => {
-          const responseData = response.data.data;
-          setUser(responseData);
-        })
-        .catch(error => {
-          // setCookies('token', new Date());
-        });
-    }
-    if (!token && user) {
-      // setUser(null);
-    }
-  }, [setUser, user]);
-
   return (
     <>
       <Header />

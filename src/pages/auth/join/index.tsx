@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import * as S from './Index.Style';
 import Input from '../../../components/Input/Input';
 
@@ -121,6 +122,11 @@ function Index() {
 
   return (
     <>
+      <HelmetProvider>
+        <Helmet>
+          <title>Grow Green - 회원가입</title>
+        </Helmet>
+      </HelmetProvider>
       {isSuccess ? (
         <S.LoginContainer>
           <svg

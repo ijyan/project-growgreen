@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import SubTitle from '../../components/SubTitle/SubTitle';
 import Tab from '../../components/Tab/Tab';
 import { CardType } from '../../types';
@@ -41,6 +42,11 @@ function Index() {
 
   return (
     <>
+      <HelmetProvider>
+        <Helmet>
+          <title>Grow Green - 운동</title>
+        </Helmet>
+      </HelmetProvider>
       <SubTitle>운동</SubTitle>
       <Tab links={exerciseLinks} index={0} />
       <CardList data={data} />

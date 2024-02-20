@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { Link, useNavigate } from 'react-router-dom';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import useStore from '../../../stores/user.store';
 import * as S from './Index.Style';
 import Input from '../../../components/Input/Input';
@@ -105,40 +106,47 @@ function Index() {
   };
 
   return (
-    <S.Container onSubmit={handleSubmit}>
-      <S.ContainerInner>
-        <S.Title>로그인</S.Title>
-        <Input
-          label="아이디"
-          type="id"
-          name="userId"
-          error={!!errors.userId}
-          helperText={errors.userId}
-          onChange={handleInputChange('userId')}
-        />
-        <Input
-          label="비밀번호"
-          type="password"
-          name="userPassword"
-          error={!!errors.password}
-          helperText={errors.password}
-          onChange={handleInputChange('password')}
-        />
-        <S.Button type="submit">로그인</S.Button>
-        <S.SignUp>
-          <span>아직 회원이 아니신가요?</span>
-          <Link to="/join">회원가입</Link>
-        </S.SignUp>
-        {isLogin ? (
-          ''
-        ) : (
-          <AuthResult
-            title="로그인 실패"
-            desc="아이디 또는 비밀번호가 틀렸습니다."
+    <>
+      <HelmetProvider>
+        <Helmet>
+          <title>Grow Green - 로그인</title>
+        </Helmet>
+      </HelmetProvider>
+      <S.Container onSubmit={handleSubmit}>
+        <S.ContainerInner>
+          <S.Title>로그인</S.Title>
+          <Input
+            label="아이디"
+            type="id"
+            name="userId"
+            error={!!errors.userId}
+            helperText={errors.userId}
+            onChange={handleInputChange('userId')}
           />
-        )}
-      </S.ContainerInner>
-    </S.Container>
+          <Input
+            label="비밀번호"
+            type="password"
+            name="userPassword"
+            error={!!errors.password}
+            helperText={errors.password}
+            onChange={handleInputChange('password')}
+          />
+          <S.Button type="submit">로그인</S.Button>
+          <S.SignUp>
+            <span>아직 회원이 아니신가요?</span>
+            <Link to="/join">회원가입</Link>
+          </S.SignUp>
+          {isLogin ? (
+            ''
+          ) : (
+            <AuthResult
+              title="로그인 실패"
+              desc="아이디 또는 비밀번호가 틀렸습니다."
+            />
+          )}
+        </S.ContainerInner>
+      </S.Container>
+    </>
   );
 }
 
