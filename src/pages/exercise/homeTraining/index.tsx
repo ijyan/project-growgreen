@@ -3,9 +3,9 @@ import axios from 'axios';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import SubTitle from '../../../components/SubTitle/SubTitle';
 import Tab from '../../../components/Tab/Tab';
-import { exerciseLinks } from '../index';
 import CardList from '../../../components/CardList/CardList';
 import { CardType } from '../../../types';
+import { EXERCISE_LIST } from '../../../constants/ExerciseMenu';
 
 export default function Index() {
   const [data, setData] = useState<CardType[]>([]);
@@ -30,7 +30,7 @@ export default function Index() {
         </Helmet>
       </HelmetProvider>
       <SubTitle>홈트레이닝</SubTitle>
-      <Tab links={exerciseLinks} index={1} />
+      <Tab links={EXERCISE_LIST} index={1} />
       <CardList data={data} />
     </>
   );

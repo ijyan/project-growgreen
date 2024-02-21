@@ -1,14 +1,8 @@
 import styled from 'styled-components';
+import { common } from '../../../styles/theme';
 
 export const Container = styled.div`
-  max-width: 1440rem;
-  margin: 0 auto;
-  padding: 0 16rem;
-  color: var(--gray110);
-
-  @media screen and (min-width: 768px) {
-    padding: 80rem 48rem;
-  }
+  ${common.container}
 `;
 
 export const Title = styled.h3`

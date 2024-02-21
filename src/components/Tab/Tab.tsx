@@ -6,13 +6,13 @@ interface IProps {
   links: {
     id: number;
     name: string;
-    path: string;
+    url: string;
   }[];
   index: number;
 }
 
 function Tab({ links, index }: IProps) {
-  const [activeTab, setActiveTab] = useState<string>(`${links[index].path}`);
+  const [activeTab, setActiveTab] = useState<string>(`${links[index].url}`);
   const navigate = useNavigate();
 
   const handleClick = (path: string) => {
@@ -24,9 +24,9 @@ function Tab({ links, index }: IProps) {
     <S.Tab>
       {links.map(item => (
         <Link
-          to={item.path}
-          className={activeTab === item.path ? 'active' : ''}
-          onClick={() => handleClick(item.path)}
+          to={item.url}
+          className={activeTab === item.url ? 'active' : ''}
+          onClick={() => handleClick(item.url)}
           key={item.id}
         >
           {item.name}
