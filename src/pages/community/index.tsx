@@ -1,88 +1,35 @@
-import React from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
-import { Box, Button, TextField } from '@mui/material';
-import styled from 'styled-components';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { styled } from 'styled-components';
 import SubTitle from '../../components/SubTitle/SubTitle';
 import Tab from '../../components/Tab/Tab';
-import PostList from '../../components/List/PostList';
 import { COMMUNITY_LIST } from '../../constants/CommunityMenu';
-
-const Wrapper = styled.div`
-  padding: 16px;
-  width: calc(100% - 32px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-const Container = styled.div`
-  width: 100%;
-  max-width: 720px;
-
-  & > * {
-    :not(:last-child) {
-      margin-bottom: 16px;
-    }
-  }
-`;
+import { PostType } from '../../types';
+import PostList from '../../components/PostList/PostList';
+import * as S from './Index.Styled';
 
 function Index() {
-  const navigate = useNavigate();
+  const [data, setData] = useState<PostType[]>([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/posts');
+      setData(response.data);
+    } catch (error) {
+      console.error('데이터를 가져오는 중 오류 발생', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <>
       <SubTitle>커뮤니티</SubTitle>
       <Tab links={COMMUNITY_LIST} index={0} />
-      <Outlet />
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          width: '100%',
-          padding: 2,
-        }}
-      >
-        {/* 체크 박스 및 텍스트 */}
-        <Box>
-          {/* 전체 게시글 수 */}
-          <Box>전체 게시글 수</Box>
-          {/* 체크 박스 */}
-          <Box>체크 박스</Box>
-        </Box>
-        {/* 검색 바 & 버튼 */}
-        <Box>
-          <Box
-            sx={{
-              fontSize: '16rem',
-            }}
-          >
-            <TextField
-              id="search-input"
-              variant="outlined"
-              size="small"
-              placeholder="커뮤니티 내에서 검색"
-            />
-          </Box>
-          <Button>검색하기</Button>
-        </Box>
-      </Box>
-      <Wrapper>
-        <Container>
-          <Button
-            title="글 작성하기"
-            onClick={() => {
-              navigate('/post-write');
-            }}
-          />
-
-          <PostList
-            posts=""
-            onClickItem={(item: { id: any }) => {
-              navigate(`/post/${item.id}`);
-            }}
-          />
-        </Container>
-      </Wrapper>
+      <S.Content>
+        <PostList data={data} />
+      </S.Content>
     </>
   );
 }

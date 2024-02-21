@@ -3,7 +3,7 @@ import { Avatar } from '@mui/material';
 import axios from 'axios';
 import isEqual from 'lodash/isEqual';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import MyPageTabs from '../../../components/myPageTab/MyPageTab';
+import MyPageTabs from '../../../components/MyPageTab/MyPageTab';
 import { User, FormData } from '../../../utils/types';
 import useStore from '../../../stores/user.store';
 import * as S from './Index.Style';

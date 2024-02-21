@@ -7,10 +7,10 @@ import { COMMUNITY_LIST } from '../../../constants/CommunityMenu';
 export default function Index() {
   return (
     <>
-      <SubTitle>질문 & 고민</SubTitle>
+      <SubTitle>질문&고민</SubTitle>
       <Tab links={COMMUNITY_LIST} index={1} />
 
-      <div>질문 & 고민</div>
+      <div>질문&고민</div>
     </>
   );
 }

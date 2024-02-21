@@ -12,7 +12,7 @@ export const MYPAGE_LIST = [
   {
     id: 1,
     title: '내가 쓴 게시물',
-    url: '/my-page/article',
+    url: '/my-page/posts',
     svg: SVGArticle,
   },
   {

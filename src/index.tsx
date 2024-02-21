@@ -13,18 +13,25 @@ import Home from './pages/home';
 
 // 운동
 import Main from './pages/exercise/main';
-// import Exercise from './pages/exercise';
 import HomeTraining from './pages/exercise/homeTraining';
 import Stretch from './pages/exercise/stretch';
 
 // 식단
 import Diet from './pages/diet';
 
+// 커뮤니티
+import Community from './pages/community';
+import Questions from './pages/community/questions';
+import Board from './pages/community/board';
+
 // 마이페이지
 import MyPage from './pages/myPage';
 import Profile from './pages/myPage/profile';
 import Comment from './pages/myPage/comment';
-import MyArticle from './pages/myPage/article';
+import MyPosts from './pages/myPage/posts';
+
+// 게시글 상세
+import PostDetail from './components/PostDetail/PostDetail';
 
 // NotFound
 import NotFound from './pages/notFound';
@@ -41,6 +48,7 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       { index: true, path: '/', element: <Home /> },
+      { path: 'posts/:postId', element: <PostDetail /> },
       {
         path: '/exercise',
         element: <Outlet />,
@@ -64,6 +72,24 @@ const router = createBrowserRouter([
         element: <Diet />,
       },
       {
+        path: '/community',
+        element: <Outlet />,
+        children: [
+          {
+            index: true,
+            element: <Community />,
+          },
+          {
+            path: 'questions',
+            element: <Questions />,
+          },
+          {
+            path: 'board',
+            element: <Board />,
+          },
+        ],
+      },
+      {
         path: '/my-page',
         element: <MyPage />,
         children: [
@@ -76,8 +102,8 @@ const router = createBrowserRouter([
             element: <Comment />,
           },
           {
-            path: 'article',
-            element: <MyArticle />,
+            path: 'posts',
+            element: <MyPosts />,
           },
         ],
       },

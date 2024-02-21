@@ -16,7 +16,7 @@ export const ContainerInner = styled.div`
 `;
 
 export const Content = styled.div`
-  border-left: 1px solid rgba(107, 114, 128, 0.3);
+  border-left: 1px solid var(--gray40);
   width: 100%;
   padding-left: 80rem;
 `;

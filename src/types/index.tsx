@@ -7,3 +7,19 @@ export interface CardType {
   thumbnail: string;
   url: string;
 }
+
+export interface PostType {
+  id: number;
+  userId: string;
+  nickName: string;
+  avatar: string;
+  title: string;
+  content: string;
+  category: string;
+  sub_category: string;
+  create_at: string;
+  update_at: string;
+  view_count: number;
+  vote_count: number;
+  comment_count: number;
+}

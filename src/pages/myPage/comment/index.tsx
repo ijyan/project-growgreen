@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import MyPageTabs from '../../../components/myPageTab/MyPageTab';
+import MyPageTabs from '../../../components/MyPageTab/MyPageTab';
 
 // 작성된 댓글 설정
 function Index() {
-  const [selectedIndex, setSelectedIndex] = useState<number>(0);
-  const handleClick = (index: number) => {
-    setSelectedIndex(index);
-  };
-
   return (
     <>
       <HelmetProvider>

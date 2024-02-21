@@ -185,3 +185,21 @@ export const color = {
   coral110: '#d63131',
   coral120: '#b81d1d',
 };
+
+export const common = {
+  container: `
+  max-width: 1440rem;
+  margin: 0 auto;
+  padding: 0 16rem;
+  color: var(--gray110);
+
+  @media screen and (min-width: 768px) {
+    padding: 80rem 48rem;
+  }
+  `,
+  ellipsis: `
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  `,
+};

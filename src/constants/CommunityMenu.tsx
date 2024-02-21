@@ -6,8 +6,8 @@ export const COMMUNITY_LIST = [
   },
   {
     id: 1,
-    name: '질문 & 고민',
-    url: '/community/inquiry',
+    name: '질문&고민',
+    url: '/community/questions',
   },
   {
     id: 2,
