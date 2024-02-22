@@ -103,6 +103,13 @@ export const theme = createTheme({
         },
       },
     },
+    MuiInput: {
+      styleOverrides: {
+        input: {
+          color: '#373f57',
+        },
+      },
+    },
     MuiFormHelperText: {
       styleOverrides: {
         root: {
@@ -188,18 +195,25 @@ export const color = {
 
 export const common = {
   container: `
-  max-width: 1440rem;
-  margin: 0 auto;
-  padding: 0 16rem;
-  color: var(--gray110);
+    max-width: 1440rem;
+    margin: 0 auto;
+    padding: 0 16rem;
+    color: var(--gray110);
 
-  @media screen and (min-width: 768px) {
-    padding: 80rem 48rem;
-  }
+    @media screen and (min-width: 768px) {
+      padding: 80rem 48rem;
+    }
   `,
   ellipsis: `
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  `,
+  blind: `
+    overflow: hidden;
+    clip: rect(1px,1px,1px,1px);
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
   `,
 };

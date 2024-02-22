@@ -8,7 +8,7 @@ export interface CardType {
   url: string;
 }
 
-export interface PostType {
+export interface IPost {
   id: number;
   userId: string;
   nickName: string;
@@ -36,4 +36,14 @@ export interface FormData {
   name: string;
   email: string;
   nickName: string;
+}
+
+export interface IUser {
+  id: number;
+  userId: string;
+  name: string;
+  nickName: string;
+  password: string;
+  email: string;
+  avatar: string;
 }
