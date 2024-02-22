@@ -12,6 +12,7 @@ interface IProp {
   value?: string;
   autoFocus?: boolean;
   required?: boolean;
+  onKeyPress?: (e: React.KeyboardEvent) => void;
 }
 
 function Index({
@@ -25,6 +26,7 @@ function Index({
   value,
   autoFocus,
   required,
+  onKeyPress,
 }: IProp) {
   return (
     <StyledInput
@@ -40,6 +42,7 @@ function Index({
       helperText={helperText}
       autoFocus={autoFocus}
       required={required}
+      onKeyPress={onKeyPress}
     />
   );
 }
