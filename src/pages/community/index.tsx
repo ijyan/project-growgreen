@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
 import SubTitle from '../../components/SubTitle';
 import Tab from '../../components/Tab';
 import { COMMUNITY_LIST } from '../../constants/CommunityMenu';
@@ -10,18 +9,39 @@ import usePostStore from '../../stores/posts.store';
 
 function Index() {
   const {
+    originalPosts,
     posts,
+    setPosts,
     fetchPosts,
     active,
     sortByDate,
     sortByThumbsUp,
     sortByViews,
     sortByComments,
+    searchTerm,
+    setSearchTerm,
   } = usePostStore();
 
   useEffect(() => {
     fetchPosts();
   }, [fetchPosts]);
+
+  const handleSearch = () => {
+    if (searchTerm.trim() === '') {
+      setPosts(originalPosts);
+    } else {
+      const filteredPosts = originalPosts.filter(post =>
+        post.title.toLowerCase().includes(searchTerm.toLowerCase()),
+      );
+      setPosts(filteredPosts);
+    }
+  };
+
+  const handleOnKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
 
   return (
     <>
@@ -38,8 +58,10 @@ function Index() {
               type="text"
               name="search"
               placeholder="검색어를 입력해주세요."
+              onChange={e => setSearchTerm(e.target.value)}
+              onKeyPress={handleOnKeyPress}
             />
-            <S.SearchButton type="button">
+            <S.SearchButton type="button" onClick={handleSearch}>
               <svg
                 width="20"
                 height="20"
@@ -144,7 +166,53 @@ function Index() {
           <S.WriteButton type="button">게시글 작성하기</S.WriteButton>
         </S.SortForm>
         <S.List>
-          <PostList data={posts} />
+          {posts.length === 0 ? (
+            <S.NotFound>
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 48 48"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 44H38C39.1046 44 40 43.1046 40 42V14H30V4H10C8.89543 4 8 4.89543 8 6V42C8 43.1046 8.89543 44 10 44Z"
+                  fill="none"
+                  stroke="#5c667b"
+                  strokeWidth="3"
+                  strokeLinecap="butt"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M30 4L40 14"
+                  stroke="#5c667b"
+                  strokeWidth="3"
+                  strokeLinecap="butt"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M18 22L30 34"
+                  stroke="#5c667b"
+                  strokeWidth="3"
+                  strokeLinecap="butt"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M30 22L18 34"
+                  stroke="#5c667b"
+                  strokeWidth="3"
+                  strokeLinecap="butt"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <div>
+                검색결과가 없어요.
+                <span>다른 키워드로 검색해보세요!</span>
+              </div>
+            </S.NotFound>
+          ) : (
+            <PostList data={posts} />
+          )}
         </S.List>
       </S.Content>
     </>
