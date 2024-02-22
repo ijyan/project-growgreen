@@ -1,9 +1,9 @@
 import React from 'react';
-import { PostType } from '../../types';
+import { IPost } from '../../types';
 import Post from '../Post';
 
 interface IProp {
-  data: PostType[];
+  data: IPost[];
 }
 
 function Index({ data }: IProp) {

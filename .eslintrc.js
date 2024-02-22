@@ -45,6 +45,8 @@ module.exports = {
     'react/require-default-props': 'off',
     'import/no-named-as-default': 0,
     'jsx-a11y/anchor-is-valid': 0,
+    // 라벨과 인풋 연관성
+    'jsx-a11y/label-has-associated-control': 1,
   },
   ignorePatterns: ['.eslintrc.js'], //
 };

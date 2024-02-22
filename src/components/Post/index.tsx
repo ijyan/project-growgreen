@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './index.Style';
-import { PostType } from '../../types';
+import { IPost } from '../../types';
 
 function Index({
   id,
@@ -14,7 +14,7 @@ function Index({
   view_count,
   vote_count,
   comment_count,
-}: PostType) {
+}: IPost) {
   // 시간 구하는 함수
   const calcDate = (date: Date) => {
     const milliSeconds = new Date().getTime() - Number(date);

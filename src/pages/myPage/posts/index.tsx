@@ -1,29 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import MyPageTabs from '../../../components/MyPageTab';
 import * as S from './index.Style';
-import { PostType } from '../../../types';
 import useStore from '../../../stores/user.store';
+import usePostStore from '../../../stores/posts.store';
 
 //! 작성된 게시물 페이지
 function Index() {
-  const [data, setData] = useState<PostType[]>([]);
   const { user } = useStore();
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get('http://localhost:5000/posts');
-      setData(response.data);
-    } catch (error) {
-      console.error('데이터를 가져오는 중 오류 발생', error);
-    }
-  };
+  const { posts, fetchPosts } = usePostStore();
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchPosts();
+  }, [fetchPosts]);
   return (
     <>
       <HelmetProvider>
@@ -36,7 +26,7 @@ function Index() {
           <MyPageTabs index={1} />
           <S.Content>
             {user &&
-              data
+              posts
                 .filter(el => el.userId === user.userId)
                 .map(item => (
                   <S.PostWrapper>

@@ -3,17 +3,17 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import * as S from './index.Style';
-import { PostType } from '../../types';
+import { IPost } from '../../types';
 
 function Index() {
   const { postId } = useParams();
-  const [post, setPost] = useState<PostType | null>(null);
+  const [post, setPost] = useState<IPost | null>(null);
   const [voted, setVoted] = useState(false);
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await axios.get<PostType>(
+        const response = await axios.get<IPost>(
           `http://localhost:5000/posts/${postId}`,
         );
         setPost(response.data);
