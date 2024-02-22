@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import * as S from './Nav.Style';
+import * as S from './index.Style';
 
-function Nav() {
+function Index() {
   return (
     <S.Nav>
       <Link to="/exercise">운동</Link>
@@ -12,4 +12,4 @@ function Nav() {
   );
 }
 
-export default Nav;
+export default Index;

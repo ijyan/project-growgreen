@@ -1,18 +1,12 @@
-import { Link, useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
-import * as S from './Tab.Style';
+import { Link, useNavigate } from 'react-router-dom';
+import * as S from './index.Style';
+import { MYPAGE_LIST } from '../../constants/MyPageMenu';
 
-interface IProps {
-  links: {
-    id: number;
-    name: string;
-    url: string;
-  }[];
-  index: number;
-}
-
-function Tab({ links, index }: IProps) {
-  const [activeTab, setActiveTab] = useState<string>(`${links[index].url}`);
+function Index({ index }: { index: number }) {
+  const [activeTab, setActiveTab] = useState<string>(
+    `${MYPAGE_LIST[index].url}`,
+  );
   const navigate = useNavigate();
 
   const handleClick = (path: string) => {
@@ -22,18 +16,19 @@ function Tab({ links, index }: IProps) {
 
   return (
     <S.Tab>
-      {links.map(item => (
+      {MYPAGE_LIST.map(item => (
         <Link
           to={item.url}
           className={activeTab === item.url ? 'active' : ''}
           onClick={() => handleClick(item.url)}
           key={item.id}
         >
-          {item.name}
+          <img src={item.svg} alt="아이콘" />
+          {item.title}
         </Link>
       ))}
     </S.Tab>
   );
 }
 
-export default Tab;
+export default Index;

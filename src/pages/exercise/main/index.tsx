@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { Outlet } from 'react-router-dom';
-import SubTitle from '../../../components/SubTitle/SubTitle';
-import Tab from '../../../components/Tab/Tab';
+import SubTitle from '../../../components/SubTitle';
+import Tab from '../../../components/Tab';
 import { EXERCISE_LIST } from '../../../constants/ExerciseMenu';
-import CardList from '../../../components/CardList/CardList';
+import CardList from '../../../components/CardList';
 import { CardType } from '../../../types';
 
 function Index() {

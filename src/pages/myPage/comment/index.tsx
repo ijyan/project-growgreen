@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import MyPageTabs from '../../../components/MyPageTab/MyPageTab';
+import MyPageTabs from '../../../components/MyPageTab';
 
 // 작성된 댓글 설정
 function Index() {

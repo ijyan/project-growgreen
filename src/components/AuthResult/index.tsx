@@ -1,5 +1,5 @@
 import React from 'react';
-import * as S from './Index.Style';
+import * as S from './index.Style';
 
 interface IProp {
   title: string;

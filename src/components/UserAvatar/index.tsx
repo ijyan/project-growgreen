@@ -30,9 +30,9 @@ function stringAvatar(name: string) {
   };
 }
 
-function UserAvatar({ name }: { name: string }) {
+function Index({ name }: { name: string }) {
   // eslint-disable-next-line react/jsx-props-no-spreading
   return <Avatar {...stringAvatar(name)} />;
 }
 
-export default UserAvatar;
+export default Index;

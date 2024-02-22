@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import SubTitle from '../../components/SubTitle/SubTitle';
-import CardList from '../../components/CardList/CardList';
+import SubTitle from '../../components/SubTitle';
+import CardList from '../../components/CardList';
 import { CardType } from '../../types';
 
 function Index() {

@@ -3,12 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { Popover } from '@mui/material';
 import useStore from '../../stores/user.store';
-import * as S from './Header.Style';
-import Nav from '../Nav/Nav';
+import * as S from './index.Style';
+import Nav from '../Nav';
 import logo from '../../assets/logo.svg';
 import { MYPAGE_LIST } from '../../constants/MyPageMenu';
 
-function Header() {
+function Index() {
   const navigator = useNavigate();
   const [cookies, , removeCookie] = useCookies(['userToken', 'userType']);
   const { user, removeUser } = useStore();
@@ -151,4 +151,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default Index;

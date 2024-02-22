@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import * as S from './Footer.Style';
+import * as S from './index.Style';
 import { ReactComponent as Logo } from '../../assets/logo.svg';
 
-function Footer() {
+function Index() {
   return (
     <S.Footer>
       <S.Inner>
@@ -24,4 +24,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default Index;

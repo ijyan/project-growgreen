@@ -1,6 +1,6 @@
 import React from 'react';
-import SubTitle from '../../../components/SubTitle/SubTitle';
-import Tab from '../../../components/Tab/Tab';
+import SubTitle from '../../../components/SubTitle';
+import Tab from '../../../components/Tab';
 import { COMMUNITY_LIST } from '../../../constants/CommunityMenu';
 
 // 질문 및 고민 나누기 페이지

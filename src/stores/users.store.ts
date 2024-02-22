@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { User } from '../utils/types';
+import { User } from '../types';
 
 // 전체 회원 상태 정의
 interface UserState {

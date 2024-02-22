@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import SubTitle from '../../../components/SubTitle/SubTitle';
-import Tab from '../../../components/Tab/Tab';
-import CardList from '../../../components/CardList/CardList';
+import SubTitle from '../../../components/SubTitle';
+import Tab from '../../../components/Tab';
+import CardList from '../../../components/CardList';
 import { CardType } from '../../../types';
 import { EXERCISE_LIST } from '../../../constants/ExerciseMenu';
 

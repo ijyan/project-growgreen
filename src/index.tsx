@@ -31,10 +31,12 @@ import Comment from './pages/myPage/comment';
 import MyPosts from './pages/myPage/posts';
 
 // 게시글 상세
-import PostDetail from './components/PostDetail/PostDetail';
+import Index from './components/PostDetail';
 
 // NotFound
 import NotFound from './pages/notFound';
+import Login from './pages/auth/login';
+import Join from './pages/auth/join';
 
 const router = createBrowserRouter([
   {
@@ -48,7 +50,9 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       { index: true, path: '/', element: <Home /> },
-      { path: 'posts/:postId', element: <PostDetail /> },
+      { path: 'posts/:postId', element: <Index /> },
+      { path: '/login', element: <Login /> },
+      { path: '/join', element: <Join /> },
       {
         path: '/exercise',
         element: <Outlet />,

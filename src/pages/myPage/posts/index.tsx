@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import MyPageTabs from '../../../components/MyPageTab/MyPageTab';
-import * as S from './Index.Style';
+import MyPageTabs from '../../../components/MyPageTab';
+import * as S from './index.Style';
 import { PostType } from '../../../types';
-import PostList from '../../../components/PostList/PostList';
 import useStore from '../../../stores/user.store';
 
 //! 작성된 게시물 페이지

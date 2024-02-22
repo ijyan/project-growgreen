@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import * as S from './Card.Style';
+import * as S from './index.Style';
 import { CardType } from '../../types';
 
-function Card({ url, thumbnail, category, title }: CardType) {
+function Index({ url, thumbnail, category, title }: CardType) {
   return (
     <S.Card>
       <Link to={url}>
@@ -19,4 +19,4 @@ function Card({ url, thumbnail, category, title }: CardType) {
   );
 }
 
-export default Card;
+export default Index;

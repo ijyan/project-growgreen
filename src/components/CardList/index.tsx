@@ -1,13 +1,13 @@
 import React from 'react';
 import { CardType } from '../../types';
-import Card from '../Card/Card';
-import * as S from './CardList.Style';
+import Card from '../Card';
+import * as S from './index.Style';
 
 interface IProp {
   data: CardType[];
 }
 
-function CardList({ data }: IProp) {
+function Index({ data }: IProp) {
   return (
     <S.Content>
       {data.map(item => (
@@ -24,4 +24,4 @@ function CardList({ data }: IProp) {
   );
 }
 
-export default CardList;
+export default Index;

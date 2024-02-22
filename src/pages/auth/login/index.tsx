@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import useStore from '../../../stores/user.store';
 import * as S from './Index.Style';
-import Input from '../../../components/Input/Input';
+import Input from '../../../components/Input';
 import AuthResult from '../../../components/AuthResult';
 
 interface LoginResponse {

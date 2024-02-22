@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledInput } from './Input.Style';
+import { StyledInput } from './index.Style';
 
 interface IProp {
   label: string;
@@ -14,7 +14,7 @@ interface IProp {
   required?: boolean;
 }
 
-function Input({
+function Index({
   label,
   type,
   name,
@@ -44,4 +44,4 @@ function Input({
   );
 }
 
-export default Input;
+export default Index;

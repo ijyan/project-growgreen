@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import * as S from './Index.Style';
-import Input from '../../../components/Input/Input';
+import * as S from './index.Style';
+import Input from '../../../components/Input';
 
 // ! 회원가입
 

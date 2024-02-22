@@ -1,12 +1,12 @@
 import React from 'react';
 import { PostType } from '../../types';
-import Post from '../Post/Post';
+import Post from '../Post';
 
 interface IProp {
   data: PostType[];
 }
 
-function PostList({ data }: IProp) {
+function Index({ data }: IProp) {
   return (
     <>
       {data.map(item => (
@@ -31,4 +31,4 @@ function PostList({ data }: IProp) {
   );
 }
 
-export default PostList;
+export default Index;

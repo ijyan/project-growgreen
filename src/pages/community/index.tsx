@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { styled } from 'styled-components';
-import SubTitle from '../../components/SubTitle/SubTitle';
-import Tab from '../../components/Tab/Tab';
+import SubTitle from '../../components/SubTitle';
+import Tab from '../../components/Tab';
 import { COMMUNITY_LIST } from '../../constants/CommunityMenu';
 import { PostType } from '../../types';
-import PostList from '../../components/PostList/PostList';
-import * as S from './Index.Styled';
+import PostList from '../../components/PostList';
+import * as S from './index.Styled';
 
 function Index() {
   const [data, setData] = useState<PostType[]>([]);

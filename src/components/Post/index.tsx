@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import * as S from './Post.Style';
+import * as S from './index.Style';
 import { PostType } from '../../types';
 
-function Post({
+function Index({
   id,
   nickName,
   avatar,
@@ -149,4 +149,4 @@ function Post({
   );
 }
 
-export default Post;
+export default Index;

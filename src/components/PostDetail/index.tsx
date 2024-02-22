@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import * as S from './PostDetail.Style';
+import * as S from './index.Style';
 import { PostType } from '../../types';
 
-function PostDetail() {
+function Index() {
   const { postId } = useParams();
   const [post, setPost] = useState<PostType | null>(null);
   const [voted, setVoted] = useState(false);
@@ -187,4 +187,4 @@ function PostDetail() {
   );
 }
 
-export default PostDetail;
+export default Index;

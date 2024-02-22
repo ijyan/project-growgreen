@@ -1,6 +1,6 @@
 import React from 'react';
-import SubTitle from '../../../components/SubTitle/SubTitle';
-import Tab from '../../../components/Tab/Tab';
+import SubTitle from '../../../components/SubTitle';
+import Tab from '../../../components/Tab';
 import { COMMUNITY_LIST } from '../../../constants/CommunityMenu';
 
 // 자유게시판 페이지

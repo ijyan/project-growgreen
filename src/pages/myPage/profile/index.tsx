@@ -3,11 +3,11 @@ import { Avatar } from '@mui/material';
 import axios from 'axios';
 import isEqual from 'lodash/isEqual';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import MyPageTabs from '../../../components/MyPageTab/MyPageTab';
-import { User, FormData } from '../../../utils/types';
+import MyPageTabs from '../../../components/MyPageTab';
+import { User, FormData } from '../../../types';
 import useStore from '../../../stores/user.store';
-import * as S from './Index.Style';
-import Input from '../../../components/Input/Input';
+import * as S from './index.Style';
+import Input from '../../../components/Input';
 import photo from '../../../assets/images/photo.png';
 
 // 프로필 설정
