@@ -8,7 +8,6 @@ import { IPost } from '../../types';
 function Index() {
   const { postId } = useParams();
   const [post, setPost] = useState<IPost | null>(null);
-  const [voted, setVoted] = useState(false);
 
   useEffect(() => {
     const fetchPost = async () => {
