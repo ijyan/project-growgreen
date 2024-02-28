@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as S from './index.Style';
 import { MYPAGE_LIST } from '../../constants/MyPageMenu';
 
@@ -7,11 +7,9 @@ function Index({ index }: { index: number }) {
   const [activeTab, setActiveTab] = useState<string>(
     `${MYPAGE_LIST[index].url}`,
   );
-  const navigate = useNavigate();
 
   const handleClick = (path: string) => {
     setActiveTab(path);
-    navigate(path);
   };
 
   return (
