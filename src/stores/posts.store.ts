@@ -14,6 +14,7 @@ interface PostStore {
   sortByViews: () => void; // 조회순
   sortByComments: () => void; // 조회순
   active: 'date' | 'thumbsUp' | 'views' | 'comments';
+  resetActiveButton: () => void;
   // 검색
   searchTerm: string;
   setSearchTerm: (term: string) => void;
@@ -26,6 +27,7 @@ const usePostStore = create<PostStore>(set => ({
   loading: true,
   error: null,
   active: 'date',
+  resetActiveButton: () => set({ active: 'date' }),
   fetchPosts: async () => {
     try {
       set({ loading: true, error: null });

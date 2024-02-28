@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import SubTitle from '../../components/SubTitle';
 import Tab from '../../components/Tab';
 import { COMMUNITY_LIST } from '../../constants/CommunityMenu';
@@ -12,6 +13,7 @@ function Index() {
     originalPosts,
     posts,
     setPosts,
+    resetActiveButton,
     fetchPosts,
     active,
     sortByDate,
@@ -24,7 +26,8 @@ function Index() {
 
   useEffect(() => {
     fetchPosts();
-  }, [fetchPosts]);
+    resetActiveButton();
+  }, [fetchPosts, resetActiveButton]);
 
   const handleSearch = () => {
     if (searchTerm.trim() === '') {
@@ -45,6 +48,11 @@ function Index() {
 
   return (
     <>
+      <HelmetProvider>
+        <Helmet>
+          <title>Grow Green - 커뮤니티</title>
+        </Helmet>
+      </HelmetProvider>
       <SubTitle>커뮤니티</SubTitle>
       <Tab links={COMMUNITY_LIST} index={0} />
       <S.Content>

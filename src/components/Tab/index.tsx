@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import * as S from './index.Style';
 
@@ -13,11 +13,9 @@ interface IProps {
 
 function Index({ links, index }: IProps) {
   const [activeTab, setActiveTab] = useState<string>(`${links[index].url}`);
-  const navigate = useNavigate();
 
   const handleClick = (path: string) => {
     setActiveTab(path);
-    navigate(path);
   };
 
   return (
