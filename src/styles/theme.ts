@@ -207,7 +207,6 @@ export const common = {
   ellipsis: `
     text-overflow: ellipsis;
     overflow: hidden;
-    white-space: nowrap;
   `,
   blind: `
     overflow: hidden;

@@ -9,10 +9,12 @@ import useStore from '../../../stores/user.store';
 import * as S from './index.Style';
 import Input from '../../../components/Input';
 import photo from '../../../assets/images/photo.png';
+import usePostStore from '../../../stores/posts.store';
 
 // 프로필 설정
 function Index() {
   const { user, updateUser } = useStore();
+  const { posts } = usePostStore();
 
   const initialPhoto = user?.avatar || photo;
   const [profileImage, setProfileImage] = useState(initialPhoto);
@@ -160,11 +162,16 @@ function Index() {
       // 서버에 업데이트 요청
 
       const updateNewUser = { ...user, ...updates };
+      const updateForm = { ...posts, ...updates };
 
       const response = await axios.put(
         `http://localhost:5000/users/${user.id}`,
         updateNewUser,
       );
+      // const responseForm = await axios.put(
+      //   `http://localhost:5000/posts/${user.id}`,
+      //   updateForm,
+      // );
       console.log('회원정보 수정 성공: ', response.data);
     } catch (error) {
       console.error('Update failed: ', error);

@@ -7,6 +7,8 @@ export const Content = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 36rem;
+  min-height: 0;
+  min-width: 0;
 
   @media screen and (min-width: 768px) {
     padding: 0 48rem;

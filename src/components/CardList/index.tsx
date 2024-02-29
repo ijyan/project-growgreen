@@ -10,16 +10,19 @@ interface IProp {
 function Index({ data }: IProp) {
   return (
     <S.Content>
-      {data.map(item => (
-        <Card
-          key={item.id}
-          id={item.id}
-          url="/exercise"
-          category={item.category}
-          title={item.title}
-          thumbnail={item.thumbnail}
-        />
-      ))}
+      {data
+        .filter(el => el.snippet.title !== 'Private video')
+        .map(item => (
+          <Card
+            key={item.id}
+            id={item.id}
+            url="/exercise"
+            snippet={item.snippet}
+            // category={item.category}
+            // title={item.snippet.title}
+            // thumbnail={item.thumbnail}
+          />
+        ))}
     </S.Content>
   );
 }
