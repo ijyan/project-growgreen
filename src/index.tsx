@@ -12,9 +12,7 @@ import { theme } from './styles/theme';
 import Home from './pages/home';
 
 // 운동
-import Main from './pages/exercise/main';
-import HomeTraining from './pages/exercise/homeTraining';
-import Stretch from './pages/exercise/stretch';
+import Exercise from './pages/exercise';
 
 // 식단
 import Diet from './pages/diet';
@@ -35,6 +33,8 @@ import Index from './components/PostDetail';
 
 // NotFound
 import NotFound from './pages/notFound';
+
+// Auth
 import Login from './pages/auth/login';
 import Join from './pages/auth/join';
 
@@ -55,21 +55,7 @@ const router = createBrowserRouter([
       { path: '/join', element: <Join /> },
       {
         path: '/exercise',
-        element: <Outlet />,
-        children: [
-          {
-            index: true,
-            element: <Main />,
-          },
-          {
-            path: 'home-training',
-            element: <HomeTraining />,
-          },
-          {
-            path: 'stretch',
-            element: <Stretch />,
-          },
-        ],
+        element: <Exercise />,
       },
       {
         path: '/diet',

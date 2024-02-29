@@ -1,11 +1,24 @@
 // TypeScript 타입 정의와 인터페이스를 보관
+import subTitle from '../components/SubTitle';
+
 export interface CardType {
   id: number;
   categoryId?: number;
-  category: string;
-  title: string;
-  thumbnail: string;
+  category?: string;
+  title?: string;
+  thumbnail?: string;
   url: string;
+  snippet: ICardSnippet;
+}
+
+export interface ICardSnippet {
+  title: string;
+  thumbnails: {
+    high: {
+      url: string;
+    };
+  };
+  description: string;
 }
 
 export interface IPost {

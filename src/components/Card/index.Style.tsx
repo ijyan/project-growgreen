@@ -1,11 +1,17 @@
 import styled from 'styled-components';
+import { common } from '../../styles/theme';
 
 export const Card = styled.div`
-  display: block;
-  //background: var(--gray20);
-  border-radius: 24rem;
   box-shadow: 4px 12px 30px 6px rgba(0, 0, 0, 0.09);
   transition: all 0.3s ease;
+  border-radius: 24rem;
+  overflow: hidden;
+
+  & a {
+    display: block;
+    min-height: 375rem;
+  }
+
   &:hover {
     box-shadow: 4px 12px 30px 6px rgba(0, 0, 0, 0.18);
     //box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.14);
@@ -26,15 +32,24 @@ export const Category = styled.span`
 
 export const Title = styled.h3`
   color: var(--gray120);
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: -1rem;
   font-size: 24rem;
   overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
+  ${common.ellipsis}
   -webkit-line-clamp: 2;
+  display: -webkit-box;
   -webkit-box-orient: vertical;
-  margin-top: 16rem;
+  margin: 0 0 8rem;
+`;
+
+export const Description = styled.span`
+  display: block;
+  ${common.ellipsis}
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  color: var(--gray90);
 `;
 
 export const ImgWrap = styled.div`
