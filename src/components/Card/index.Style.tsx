@@ -38,8 +38,6 @@ export const Title = styled.h3`
   overflow: hidden;
   ${common.ellipsis}
   -webkit-line-clamp: 2;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
   margin: 0 0 8rem;
 `;
 
