@@ -114,16 +114,37 @@ const GlobalStyled = createGlobalStyle`
     text-decoration: none;
     color: inherit;
   }
-  
-  button{
-    background: inherit ;
-    border:none;
-    box-shadow:none;
-    border-radius:0;
-    padding:0;
-    overflow:visible;
-    cursor:pointer;
+
+  button {
+    background: inherit;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    overflow: visible;
+    cursor: pointer;
     font-family: inherit;
+  }
+
+  select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -o-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+
+    &:focus {
+      border-color: var(--gray80);
+    }
+  }
+
+  textarea {
+    font-family: inherit;
+    color: inherit;
+  }
+
+  textarea::placeholder {
+    color: var(--gray50);
   }
 `;
 

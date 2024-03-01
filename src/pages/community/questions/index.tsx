@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { useNavigate } from 'react-router-dom';
 import PostList from '../../../components/PostList';
 import SubTitle from '../../../components/SubTitle';
 import Tab from '../../../components/Tab';
@@ -7,6 +8,7 @@ import { COMMUNITY_LIST } from '../../../constants/CommunityMenu';
 import * as S from '../index.Styled';
 import usePostStore from '../../../stores/posts.store';
 import Input from '../../../components/Input';
+import useStore from '../../../stores/user.store';
 
 // 질문 및 고민 나누기 페이지
 export default function Index() {
@@ -20,11 +22,13 @@ export default function Index() {
     sortByThumbsUp,
     sortByViews,
     sortByComments,
+    active,
     searchTerm,
     setSearchTerm,
   } = usePostStore();
 
-  const { active } = usePostStore();
+  const { user } = useStore();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchPosts();
@@ -172,7 +176,14 @@ export default function Index() {
               댓글순
             </button>
           </S.SortBox>
-          <S.WriteButton type="button">게시글 작성하기</S.WriteButton>
+          <S.WriteButton
+            type="button"
+            onClick={
+              user ? () => navigate('/posts/new') : () => navigate('/login')
+            }
+          >
+            게시글 작성하기
+          </S.WriteButton>
         </S.SortForm>
         <S.List>
           {posts.length === 0 ? (

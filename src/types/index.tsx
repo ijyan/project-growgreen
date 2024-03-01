@@ -30,8 +30,8 @@ export interface IPost {
   content: string;
   category: string;
   sub_category: string;
-  create_at: string;
-  update_at: string;
+  create_at: number;
+  update_at: number;
   view_count: number;
   vote_count: number;
   comment_count: number;
