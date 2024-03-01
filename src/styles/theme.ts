@@ -79,6 +79,15 @@ export const theme = createTheme({
         root: {
           transform: 'none',
           fontSize: '14rem',
+          transition: 'none',
+
+          '&.Mui-focused': {
+            color: '#475067',
+          },
+
+          '&.Mui-error': {
+            color: '#475067',
+          },
         },
       },
     },
@@ -97,9 +106,16 @@ export const theme = createTheme({
           '&.Mui-error input': {
             borderColor: '#ef4444',
           },
+          '&.Mui-error fieldset': {
+            borderColor: '#ef4444 !important',
+          },
         },
         input: {
           boxSizing: 'border-box',
+          '::placeholder': {
+            color: '#b4c0d3',
+            opacity: 1,
+          },
         },
       },
     },
@@ -116,7 +132,7 @@ export const theme = createTheme({
           fontSize: '12rem',
           '&.Mui-error': {
             color: '#ef4444',
-            marginTop: '8rem',
+            margin: '8rem 0 0',
           },
           '&.Mui-error:before': {
             // content:
@@ -133,6 +149,61 @@ export const theme = createTheme({
         root: {
           backgroundColor: 'transparent',
           cursor: 'pointer',
+        },
+      },
+    },
+
+    MuiSelect: {
+      styleOverrides: {
+        root: {
+          '&.Mui-error, &.Mui-error .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#ef4444',
+          },
+          // '&.Mui-error .MuiOutlinedInput-notchedOutline': {
+          //   borderColor: '#ef4444',
+          // },
+        },
+        select: {
+          fontSize: '16rem',
+          boxSizing: 'border-box',
+          padding: 0,
+        },
+      },
+    },
+    MuiList: {
+      styleOverrides: {
+        root: {
+          padding: '8rem',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '4rem',
+          backgroundColor: '#fff',
+        },
+      },
+    },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          fontSize: '16rem',
+          color: '#373f57',
+          padding: '8rem 12rem',
+          borderRadius: '6rem',
+          transition: 'background-color 0.2s ease',
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          color: '#373f57',
+        },
+        notchedOutline: {
+          border: '1px solid #b4c0d3',
+          borderRadius: '6rem',
+
+          '&:hover': {
+            border: '1px solid #b4c0d3',
+          },
         },
       },
     },

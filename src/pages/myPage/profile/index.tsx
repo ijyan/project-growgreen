@@ -14,7 +14,7 @@ import usePostStore from '../../../stores/posts.store';
 // 프로필 설정
 function Index() {
   const { user, updateUser } = useStore();
-  const { posts } = usePostStore();
+  const { setPosts, updateUserPost } = usePostStore();
 
   const initialPhoto = user?.avatar || photo;
   const [profileImage, setProfileImage] = useState(initialPhoto);
@@ -74,11 +74,22 @@ function Index() {
         );
         previousFormDataRef.current = { ...response.data };
       } catch (error) {
-        console.error('Update failed: ', error);
+        console.error('Get FetchUser failed: ', error);
       }
     };
+
+    // // const fetchPost = async () => {
+    // //   try {
+    // //     const response = await axios.get(`http://localhost:5000/posts`);
+    // //     setPosts(response.data);
+    // //   } catch (error) {
+    // //     console.error('Get FetchPost failed: ', error);
+    // //   }
+    // // };
+
+    // fetchPost();
     fetchUser();
-  }, [user?.id]);
+  }, [user?.id, setPosts]);
 
   useEffect(() => {
     // 입력 값이 이전 값과 다를 때만 상태를 업데이트
@@ -149,9 +160,9 @@ function Index() {
       name: formData.name !== user.name ? formData.name : user.name,
       email: formData.email !== user.email ? formData.email : user.email,
       password:
-        formData.password !== user.email ? formData.password : user.password,
+        formData.password !== user.password ? formData.password : user.password,
       nickName:
-        formData.nickName !== user.email ? formData.nickName : user.nickName,
+        formData.nickName !== user.nickName ? formData.nickName : user.nickName,
       avatar: profileImage !== user.avatar ? profileImage : user.avatar,
     };
 
@@ -160,19 +171,23 @@ function Index() {
       updateUser(user.id, { ...user, ...updates });
 
       // 서버에 업데이트 요청
-
       const updateNewUser = { ...user, ...updates };
-      const updateForm = { ...posts, ...updates };
 
       const response = await axios.put(
         `http://localhost:5000/users/${user.id}`,
         updateNewUser,
       );
-      // const responseForm = await axios.put(
-      //   `http://localhost:5000/posts/${user.id}`,
-      //   updateForm,
+
+      // TODO: 작업 필요
+      // updateUserPost(user.userId, formData.nickName, formData.avatar);
+
+      // const responseForm = await axios.patch(
+      //   `http://localhost:5000/posts?userId=${user.userId}`,
+      //   { nickName: formData.nickName, avatar: profileImage },
+      //   { headers: { 'Content-Type': 'application/json' } },
       // );
-      console.log('회원정보 수정 성공: ', response.data);
+
+      // console.log('회원정보 수정 성공: ', response.data);
     } catch (error) {
       console.error('Update failed: ', error);
     }

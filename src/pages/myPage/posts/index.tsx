@@ -30,7 +30,7 @@ function Index() {
                 .filter(el => el.userId === user.userId)
                 .map(item => (
                   <S.PostWrapper>
-                    <Link to={`/posts/${item.id}`}>
+                    <Link to={`/posts/${item.id}`} key={item.id}>
                       <S.Category>{item.sub_category}</S.Category>
                       <S.Title>{item.title}</S.Title>
                       <S.Desc>{item.content}</S.Desc>

@@ -19,17 +19,6 @@ export const Card = styled.div`
   }
 `;
 
-export const Category = styled.span`
-  display: inline-block;
-  //background-color: #fff;
-  background: var(--gray20);
-  font-size: 14rem;
-  border-radius: 8rem;
-  height: 32rem;
-  padding: 0 12rem;
-  line-height: 32rem;
-`;
-
 export const Title = styled.h3`
   color: var(--gray120);
   font-weight: 600;

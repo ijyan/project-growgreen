@@ -32,12 +32,10 @@ function Index({
     if (days < 7) return `${Math.floor(days)}일 전`;
     if (weeks < 5) return `${Math.floor(weeks)}주 전`;
     if (months < 12) return `${Math.floor(months)}개월 전`;
+    if (years < 3) return `${Math.floor(years)}년 전`;
 
-    return `${Math.floor(years)}년 전`;
+    return `${new Date(date).toLocaleDateString()}`;
   };
-
-  // console.log(create_at);
-  console.log();
 
   return (
     <S.Wrapper>

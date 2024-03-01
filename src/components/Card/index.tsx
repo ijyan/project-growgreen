@@ -12,7 +12,6 @@ function Index({ url, snippet }: CardType) {
           <img src={snippet.thumbnails.high.url} alt="thumb-img" />
         </S.ImgWrap>
         <S.TextWrap>
-          {/* <S.Category>운동</S.Category> */}
           <S.Title>{snippet.title}</S.Title>
           <S.Description>{snippet.description}</S.Description>
         </S.TextWrap>

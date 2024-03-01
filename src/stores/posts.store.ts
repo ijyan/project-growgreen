@@ -4,6 +4,7 @@ import { IPost } from '../types';
 
 interface PostStore {
   originalPosts: IPost[];
+  // post: IPost | null;
   posts: IPost[];
   setPosts: (posts: IPost[]) => void;
   loading: boolean;
@@ -18,10 +19,13 @@ interface PostStore {
   // 검색
   searchTerm: string;
   setSearchTerm: (term: string) => void;
+  // 포스트 유저 업데이트
+  updateUserPost: (userId: string, nickName: string, avatar: string) => void;
 }
 
 const usePostStore = create<PostStore>(set => ({
   originalPosts: [],
+  // post: null,
   posts: [],
   setPosts: posts => set({ posts }),
   loading: true,
@@ -75,6 +79,14 @@ const usePostStore = create<PostStore>(set => ({
   // 검색
   searchTerm: '',
   setSearchTerm: (term: string) => set({ searchTerm: term }),
+  // 유저 업데이트
+  updateUserPost: (userId, nickName, avatar) => {
+    set(state => ({
+      posts: state.posts.map(post =>
+        post.userId === userId ? { ...post, nickName, avatar } : post,
+      ),
+    }));
+  },
 }));
 
 export default usePostStore;
