@@ -28,13 +28,11 @@ function Index() {
   });
   const navigate = useNavigate();
 
-  console.log(new Date().toLocaleDateString());
-
   // select 옵션
   const option = [
     { id: 0, value: '', name: '카테고리를 선택해주세요.' },
-    { id: 1, value: 'question', name: '질문&고민' },
-    { id: 2, value: 'board', name: '자유게시판' },
+    { id: 1, value: '질문&고민', name: '질문&고민' },
+    { id: 2, value: '자유게시판', name: '자유게시판' },
   ];
 
   const [errors, setErrors] = useState<
@@ -49,7 +47,8 @@ function Index() {
     setFormData({
       ...formData,
       sub_category: event.target.value as string,
-      // (event.target.value as string) === 'board' ? '자유게시판' : '질문&고민',
+      // sub_category:
+      //   (event.target.value as string) === 'board' ? '자유게시판' : '질문&고민',
     });
   };
 
