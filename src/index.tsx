@@ -29,8 +29,9 @@ import Comment from './pages/myPage/comment';
 import MyPosts from './pages/myPage/posts';
 
 // 게시글
-import PostDetail from './components/PostDetail';
+import PostDetail from './components/Post/PostDetail';
 import PostNew from './pages/post/new';
+import PostEdit from './pages/post/edit';
 
 // NotFound
 import NotFound from './pages/notFound';
@@ -51,8 +52,6 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       { index: true, path: '/', element: <Home /> },
-      { path: 'posts/:postId', element: <PostDetail /> },
-      { path: 'posts/:userId' },
       { path: '/login', element: <Login /> },
       { path: '/join', element: <Join /> },
       {
@@ -65,6 +64,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/posts',
+        element: <Outlet />,
         children: [
           {
             path: ':postId',
@@ -73,6 +73,10 @@ const router = createBrowserRouter([
           {
             path: 'new',
             element: <PostNew />,
+          },
+          {
+            path: ':postId/edit',
+            element: <PostEdit />,
           },
         ],
       },

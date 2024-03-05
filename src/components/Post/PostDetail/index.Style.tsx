@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { common } from '../../styles/theme';
+import { common } from '../../../styles/theme';
 
 export const Container = styled.div`
   ${common.container}

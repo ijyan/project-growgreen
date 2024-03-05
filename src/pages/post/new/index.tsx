@@ -47,8 +47,6 @@ function Index() {
     setFormData({
       ...formData,
       sub_category: event.target.value as string,
-      // sub_category:
-      //   (event.target.value as string) === 'board' ? '자유게시판' : '질문&고민',
     });
   };
 

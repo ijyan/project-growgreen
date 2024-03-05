@@ -1,6 +1,6 @@
 import React from 'react';
-import { IPost } from '../../types';
-import Post from '../Post';
+import { IPost } from '../../../types';
+import Post from '../index';
 
 interface IProp {
   data: IPost[];

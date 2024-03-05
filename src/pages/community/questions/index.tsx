@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
-import PostList from '../../../components/PostList';
+import PostList from '../../../components/Post/PostList';
 import SubTitle from '../../../components/SubTitle';
 import Tab from '../../../components/Tab';
 import { COMMUNITY_LIST } from '../../../constants/CommunityMenu';
