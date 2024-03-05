@@ -7,6 +7,7 @@ import * as S from './index.Style';
 import { IPost } from '../../types';
 import usePostStore from '../../stores/posts.store';
 import useStore from '../../stores/user.store';
+import Loading from '../Loading';
 
 function Index() {
   const { postId } = useParams();
@@ -31,7 +32,7 @@ function Index() {
   }, [postId, fetchPosts]);
 
   if (!post) {
-    return <div>Loading</div>;
+    return <Loading />;
   }
 
   const handleClick = async () => {
