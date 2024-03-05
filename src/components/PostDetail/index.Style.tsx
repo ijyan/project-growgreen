@@ -12,11 +12,34 @@ export const Inner = styled.div`
   padding: 32rem;
 `;
 
-export const Title = styled.h3`
-  font-size: 20rem;
-  font-weight: 700;
-  line-height: 28rem;
-  color: var(--gray110);
+export const Top = styled.div`
+  position: relative;
+
+  & h3 {
+    font-size: 20rem;
+    font-weight: 700;
+    line-height: 28rem;
+    color: var(--gray110);
+    padding: 0 100rem 0 0;
+  }
+`;
+
+export const PostBtn = styled.div`
+  display: flex;
+  gap: 4rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  & button {
+    border: 1px solid var(--gray40);
+    color: var(--gray90);
+    min-width: 40rem;
+    height: 24rem;
+    line-height: 24rem;
+    border-radius: 6rem;
+    font-size: 12rem;
+  }
 `;
 
 export const Info = styled.div`
@@ -75,6 +98,7 @@ export const Content = styled.div`
 
 export const VoteCount = styled.div`
   text-align: center;
+
   & button {
     display: inline-flex;
     justify-content: center;

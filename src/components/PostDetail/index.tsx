@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { findAllByRole } from '@testing-library/react';
 import * as S from './index.Style';
 import { IPost } from '../../types';
+import usePostStore from '../../stores/posts.store';
 
 function Index() {
   const { postId } = useParams();
-  const [post, setPost] = useState<IPost | null>(null);
+  const [post, setPost] = useState<IPost | undefined>(undefined);
+  const { posts, setPosts, fetchPosts } = usePostStore();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchPost = async () => {
+    const fetchData = async () => {
       try {
         const response = await axios.get<IPost>(
           `http://localhost:5000/posts/${postId}`,
@@ -20,9 +24,9 @@ function Index() {
         console.error('Error fetching post', error);
       }
     };
-
-    fetchPost();
-  }, [postId]);
+    fetchPosts();
+    fetchData();
+  }, [postId, fetchPosts]);
 
   if (!post) {
     return <div>Loading</div>;
@@ -62,6 +66,30 @@ function Index() {
     return `${new Date(date).toLocaleDateString()}`;
   };
 
+  const handleUpdate = () => {
+    console.log(posts.find(item => item.id === postId));
+    // console.log(posts.find(item => item.id === Number(postId)));
+  };
+
+  const handleDeletePost = async (id: string) => {
+    const userConfirmed = window.confirm(
+      '입력하신 글을 정말 삭제하시겠어요? 삭제하신 글은 복구하실 수 없습니다.',
+    );
+
+    if (!userConfirmed) return;
+
+    try {
+      await axios.delete(`http://localhost:5000/posts/${postId}`).then(() => {
+        alert('삭제되었습니다.');
+      });
+      const updatedPosts = posts.filter(item => item.id !== id);
+      setPosts(updatedPosts);
+      navigate(-1);
+    } catch (error) {
+      console.error('Error deleting post:', error);
+    }
+  };
+
   return (
     <>
       <HelmetProvider>
@@ -71,7 +99,17 @@ function Index() {
       </HelmetProvider>
       <S.Container>
         <S.Inner>
-          <S.Title>{post.title}</S.Title>
+          <S.Top>
+            <h3>{post.title}</h3>
+            <S.PostBtn>
+              <button type="button" onClick={() => handleUpdate()}>
+                수정
+              </button>
+              <button type="button" onClick={() => handleDeletePost(post.id)}>
+                삭제
+              </button>
+            </S.PostBtn>
+          </S.Top>
           <S.Info>
             <S.Profile>
               <img src={post.avatar} alt="유저 아바타" />
