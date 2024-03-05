@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { Popover } from '@mui/material';
-import useStore from '../../stores/user.store';
+import useUserStore from '../../stores/user.store';
 import * as S from './index.Style';
 import Nav from '../Nav';
 import logo from '../../assets/logo.svg';
@@ -11,7 +11,7 @@ import { MYPAGE_LIST } from '../../constants/MyPageMenu';
 function Index() {
   const navigator = useNavigate();
   const [cookies, , removeCookie] = useCookies(['userToken', 'userType']);
-  const { user, removeUser } = useStore();
+  const { user, removeUser } = useUserStore();
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 

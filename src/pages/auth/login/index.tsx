@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import useStore from '../../../stores/user.store';
+import useUserStore from '../../../stores/user.store';
 import * as S from './Index.Style';
 import Input from '../../../components/Input';
 import AuthResult from '../../../components/AuthResult';
@@ -31,7 +31,7 @@ function Index() {
   const [isLogin, setIsLogin] = useState<boolean>(true);
   const [cookies, setCookie] = useCookies(['userToken', 'userType']);
 
-  const { setUser } = useStore();
+  const { setUser } = useUserStore();
 
   const navigate = useNavigate();
 

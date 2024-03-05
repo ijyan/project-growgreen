@@ -3,12 +3,12 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import MyPageTabs from '../../../components/MyPageTab';
 import * as S from './index.Style';
-import useStore from '../../../stores/user.store';
+import useUserStore from '../../../stores/user.store';
 import usePostStore from '../../../stores/posts.store';
 
 //! 작성된 게시물 페이지
 function Index() {
-  const { user } = useStore();
+  const { user } = useUserStore();
   const { posts, fetchPosts } = usePostStore();
 
   useEffect(() => {
