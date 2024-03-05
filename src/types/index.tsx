@@ -22,7 +22,7 @@ export interface ICardSnippet {
 }
 
 export interface IPost {
-  id: number;
+  id: string;
   userId: string;
   nickName: string;
   avatar: string;
