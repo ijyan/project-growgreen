@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import SubTitle from '../../components/SubTitle';
 import Tab from '../../components/Tab';
 import { COMMUNITY_LIST } from '../../constants/CommunityMenu';
-import PostList from '../../components/PostList';
+import PostList from '../../components/Post/PostList';
 import * as S from './index.Styled';
 import Input from '../../components/Input';
 import usePostStore from '../../stores/posts.store';

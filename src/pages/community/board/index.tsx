@@ -7,7 +7,7 @@ import { COMMUNITY_LIST } from '../../../constants/CommunityMenu';
 import * as S from '../index.Styled';
 import usePostStore from '../../../stores/posts.store';
 import Input from '../../../components/Input';
-import PostList from '../../../components/PostList';
+import PostList from '../../../components/Post/PostList';
 import useStore from '../../../stores/user.store';
 
 // 자유게시판 페이지
