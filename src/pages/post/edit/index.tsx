@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { SelectChangeEvent } from '@mui/material';
 import axios from 'axios';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
@@ -9,6 +9,7 @@ import { IPost } from '../../../types';
 import Select from '../../../components/Select';
 import TextField from '../../../components/TextArea';
 import useUserStore from '../../../stores/user.store';
+import NotFound from '../../notFound';
 
 function Index() {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ function Index() {
     title: '',
     content: '',
   });
+  const [postUserId, setPostUserId] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,13 +41,14 @@ function Index() {
         );
 
         // eslint-disable-next-line @typescript-eslint/naming-convention
-        const { title, content, sub_category } = response.data;
+        const { title, content, sub_category, userId } = response.data;
         // setPost(response.data);
         setFormData({
           title,
           content,
           sub_category,
         });
+        setPostUserId(userId);
       } catch (error) {
         console.error('Error fetching post', error);
       }
@@ -129,48 +132,52 @@ function Index() {
           <title>Grow Green - 게시글 작성</title>
         </Helmet>
       </HelmetProvider>
-      <S.Content>
-        <S.ContentInner>
-          <S.SelectBox>
-            <Select
-              id="category"
-              label="카테고리"
-              value={formData.sub_category}
-              onChange={selectChange}
-              error={!!errors.sub_category}
-              option={option}
-              displayEmpty
-              helperText={errors.sub_category}
+      {user && user.userId === postUserId ? (
+        <S.Content>
+          <S.ContentInner>
+            <S.SelectBox>
+              <Select
+                id="category"
+                label="카테고리"
+                value={formData.sub_category}
+                onChange={selectChange}
+                error={!!errors.sub_category}
+                option={option}
+                displayEmpty
+                helperText={errors.sub_category}
+              />
+            </S.SelectBox>
+            <Input
+              label="제목"
+              type="text"
+              name="title"
+              value={formData.title}
+              // defaultValue={formData.title}
+              placeholder="제목을 입력해주세요."
+              error={!!errors.title}
+              onChange={handleChange('title')}
+              helperText={errors.title}
             />
-          </S.SelectBox>
-          <Input
-            label="제목"
-            type="text"
-            name="title"
-            value={formData.title}
-            // defaultValue={formData.title}
-            placeholder="제목을 입력해주세요."
-            error={!!errors.title}
-            onChange={handleChange('title')}
-            helperText={errors.title}
-          />
-          <S.TextFieldBox>
-            <TextField
-              label="본문"
-              multiline
-              rows={12}
-              defaultValue={formData.content}
-              placeholder="내용을 입력해주세요."
-              error={!!errors.content}
-              helperText={errors.content}
-              onChange={handleChange('content')}
-            />
-          </S.TextFieldBox>
-          <S.Button type="submit" onClick={handleSave}>
-            게시글 수정
-          </S.Button>
-        </S.ContentInner>
-      </S.Content>
+            <S.TextFieldBox>
+              <TextField
+                label="본문"
+                multiline
+                rows={12}
+                defaultValue={formData.content}
+                placeholder="내용을 입력해주세요."
+                error={!!errors.content}
+                helperText={errors.content}
+                onChange={handleChange('content')}
+              />
+            </S.TextFieldBox>
+            <S.Button type="submit" onClick={handleSave}>
+              게시글 수정
+            </S.Button>
+          </S.ContentInner>
+        </S.Content>
+      ) : (
+        <NotFound />
+      )}
     </>
   );
 }
