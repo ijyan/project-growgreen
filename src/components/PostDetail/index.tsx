@@ -6,11 +6,13 @@ import { findAllByRole } from '@testing-library/react';
 import * as S from './index.Style';
 import { IPost } from '../../types';
 import usePostStore from '../../stores/posts.store';
+import useStore from '../../stores/user.store';
 
 function Index() {
   const { postId } = useParams();
   const [post, setPost] = useState<IPost | undefined>(undefined);
   const { posts, setPosts, fetchPosts } = usePostStore();
+  const { user } = useStore();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -102,12 +104,21 @@ function Index() {
           <S.Top>
             <h3>{post.title}</h3>
             <S.PostBtn>
-              <button type="button" onClick={() => handleUpdate()}>
-                수정
-              </button>
-              <button type="button" onClick={() => handleDeletePost(post.id)}>
-                삭제
-              </button>
+              {user && user.userId === post.userId ? (
+                <>
+                  <button type="button" onClick={() => handleUpdate()}>
+                    수정
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleDeletePost(post.id)}
+                  >
+                    삭제
+                  </button>
+                </>
+              ) : (
+                ''
+              )}
             </S.PostBtn>
           </S.Top>
           <S.Info>
