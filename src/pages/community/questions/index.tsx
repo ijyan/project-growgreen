@@ -8,7 +8,7 @@ import { COMMUNITY_LIST } from '../../../constants/CommunityMenu';
 import * as S from '../index.Styled';
 import usePostStore from '../../../stores/posts.store';
 import Input from '../../../components/Input';
-import useStore from '../../../stores/user.store';
+import useUserStore from '../../../stores/user.store';
 
 // 질문 및 고민 나누기 페이지
 export default function Index() {
@@ -27,7 +27,7 @@ export default function Index() {
     setSearchTerm,
   } = usePostStore();
 
-  const { user } = useStore();
+  const { user } = useUserStore();
   const navigate = useNavigate();
 
   useEffect(() => {

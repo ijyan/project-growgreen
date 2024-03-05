@@ -6,14 +6,14 @@ import { findAllByRole } from '@testing-library/react';
 import * as S from './index.Style';
 import { IPost } from '../../../types';
 import usePostStore from '../../../stores/posts.store';
-import useStore from '../../../stores/user.store';
+import useUserStore from '../../../stores/user.store';
 import Loading from '../../Loading';
 
 function Index() {
   const { postId } = useParams();
   const [post, setPost] = useState<IPost | undefined>(undefined);
   const { posts, setPosts, fetchPosts } = usePostStore();
-  const { user } = useStore();
+  const { user } = useUserStore();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -70,8 +70,7 @@ function Index() {
   };
 
   const handleUpdate = () => {
-    console.log(posts.find(item => item.id === postId));
-    // console.log(posts.find(item => item.id === Number(postId)));
+    navigate(`/posts/${postId}/edit`);
   };
 
   const handleDeletePost = async (id: string) => {

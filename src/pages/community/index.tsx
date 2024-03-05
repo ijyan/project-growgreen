@@ -8,7 +8,7 @@ import PostList from '../../components/Post/PostList';
 import * as S from './index.Styled';
 import Input from '../../components/Input';
 import usePostStore from '../../stores/posts.store';
-import useStore from '../../stores/user.store';
+import useUserStore from '../../stores/user.store';
 
 function Index() {
   const {
@@ -27,7 +27,7 @@ function Index() {
   } = usePostStore();
 
   const navigate = useNavigate();
-  const { user } = useStore();
+  const { user } = useUserStore();
 
   useEffect(() => {
     fetchPosts();

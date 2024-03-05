@@ -12,7 +12,7 @@ interface UserState {
   removeUser: (id: number) => void;
 }
 
-export const useStore = create(
+export const useUserStore = create(
   persist<UserState>(
     set => ({
       user: null,
@@ -33,4 +33,4 @@ export const useStore = create(
   ),
 );
 
-export default useStore;
+export default useUserStore;

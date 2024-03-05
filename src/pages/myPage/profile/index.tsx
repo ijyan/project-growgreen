@@ -5,7 +5,7 @@ import isEqual from 'lodash/isEqual';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import MyPageTabs from '../../../components/MyPageTab';
 import { User, FormData } from '../../../types';
-import useStore from '../../../stores/user.store';
+import useUserStore from '../../../stores/user.store';
 import * as S from './index.Style';
 import Input from '../../../components/Input';
 import photo from '../../../assets/images/photo.png';
@@ -13,7 +13,7 @@ import usePostStore from '../../../stores/posts.store';
 
 // 프로필 설정
 function Index() {
-  const { user, updateUser } = useStore();
+  const { user, updateUser } = useUserStore();
   const { setPosts, updateUserPost } = usePostStore();
 
   const initialPhoto = user?.avatar || photo;

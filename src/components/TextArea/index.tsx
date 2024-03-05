@@ -11,6 +11,7 @@ interface IProp {
   multiline?: boolean;
   rows?: number;
   onChange?: (event: React.ChangeEvent<{ value: string }>) => void;
+  defaultValue?: string;
 }
 
 function Index({
@@ -22,6 +23,7 @@ function Index({
   multiline,
   rows,
   onChange,
+  defaultValue,
 }: IProp) {
   return (
     <S.MuiTextField
@@ -32,6 +34,7 @@ function Index({
       helperText={helperText}
       placeholder={placeholder}
       onChange={onChange}
+      defaultValue={defaultValue}
     />
   );
 }
