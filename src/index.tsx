@@ -14,9 +14,6 @@ import Home from './pages/home';
 // 운동
 import Exercise from './pages/exercise';
 
-// 식단
-import Diet from './pages/diet';
-
 // 커뮤니티
 import Community from './pages/community';
 import Questions from './pages/community/questions';
@@ -57,10 +54,6 @@ const router = createBrowserRouter([
       {
         path: '/exercise',
         element: <Exercise />,
-      },
-      {
-        path: '/diet',
-        element: <Diet />,
       },
       {
         path: '/posts',
