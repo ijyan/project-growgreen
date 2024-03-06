@@ -16,7 +16,7 @@ function Index({ data }: IProp) {
           <Card
             key={item.id}
             id={item.id}
-            url="/exercise"
+            url={`https://www.youtube.com/watch?v=${item.snippet.resourceId.videoId}&ab_channel=ThankyouBUBU`}
             snippet={item.snippet}
             // category={item.category}
             // title={item.snippet.title}

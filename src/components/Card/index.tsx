@@ -7,7 +7,7 @@ function Index({ url, snippet }: CardType) {
   // console.log(snippet.thumbnails.high.url);
   return (
     <S.Card>
-      <Link to={url}>
+      <Link to={url} target="_blank">
         <S.ImgWrap>
           <img src={snippet.thumbnails.high.url} alt="thumb-img" />
         </S.ImgWrap>
