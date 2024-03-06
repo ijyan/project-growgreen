@@ -63,7 +63,11 @@ export default function Index() {
       <S.Content>
         <S.SearchForm>
           <S.ListNum>
-            전체 <strong>{posts.length}</strong>건
+            전체{' '}
+            <strong>
+              {posts.filter(item => item.sub_category === '질문&고민').length}
+            </strong>
+            건
           </S.ListNum>
           <S.InputBox>
             <Input

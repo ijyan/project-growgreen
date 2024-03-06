@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import SubTitle from '../../components/SubTitle';
 import Tab from '../../components/Tab';
 import { COMMUNITY_LIST } from '../../constants/CommunityMenu';
@@ -9,6 +9,8 @@ import * as S from './index.Styled';
 import Input from '../../components/Input';
 import usePostStore from '../../stores/posts.store';
 import useUserStore from '../../stores/user.store';
+import Pagination from '../../components/Pagination';
+import { IPost } from '../../types';
 
 function Index() {
   const {
@@ -29,10 +31,32 @@ function Index() {
   const navigate = useNavigate();
   const { user } = useUserStore();
 
+  // 페이징
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialPage =
+    searchParams.get('page') === null ? '1' : searchParams.get('page');
+  const [currentPost, setCurrentPost] = useState<IPost[]>([]);
+  const [activePage, setActivePage] = useState(Number(initialPage));
+
+  const itemsPerPage = 10;
+  const indexOfLastPost: number = activePage * itemsPerPage;
+  const indexOfFirstPost: number = indexOfLastPost - itemsPerPage;
+
   useEffect(() => {
     fetchPosts();
     resetActiveButton();
   }, [fetchPosts, resetActiveButton]);
+
+  // 현재 페이지에 나타낼 데이터
+  useEffect(() => {
+    setCurrentPost(posts.slice(indexOfFirstPost, indexOfLastPost));
+  }, [posts, indexOfLastPost, indexOfFirstPost]);
+
+  // active 페이지
+  const handlePageChange = (pageNumber: number) => {
+    setActivePage(pageNumber);
+    navigate(`/community?page=${pageNumber}`);
+  };
 
   const handleSearch = () => {
     if (searchTerm.trim() === '') {
@@ -231,7 +255,18 @@ function Index() {
               </div>
             </S.NotFound>
           ) : (
-            <PostList data={posts} />
+            <>
+              <PostList data={currentPost} />
+              <Pagination
+                activePage={activePage}
+                itemsCountPerPage={itemsPerPage}
+                totalItemsCount={posts.length}
+                pageRangeDisplayed={10}
+                prevPageText="이전"
+                nextPageText="다음"
+                onChange={handlePageChange}
+              />
+            </>
           )}
         </S.List>
       </S.Content>
