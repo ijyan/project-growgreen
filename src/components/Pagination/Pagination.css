@@ -1,0 +1,60 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40rem 0 80rem;
+  gap: 4rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul.pagination li:first-child,
+ul.pagination li:last-child {
+  display: none;
+}
+
+ul.pagination li:nth-child(2) a,
+ul.pagination li:nth-last-child(2) a {
+  width: 54rem;
+}
+
+ul.pagination li:nth-child(2) a {
+  margin-right: 12rem;
+}
+
+ul.pagination li:nth-last-child(2) a {
+  margin-left: 12rem;
+}
+
+ul.pagination li a {
+  display: block;
+  text-decoration: none;
+  color: var(--gray80);
+  width: 32rem;
+  height: 32rem;
+  line-height: 31rem;
+  text-align: center;
+  background: none;
+  border-radius: 4rem;
+  font-weight: 500;
+  position: relative;
+  font-size: 13rem;
+}
+
+ul.pagination li:not(.active) a:hover {
+  background: var(--gray30);
+}
+
+ul.pagination li.active a {
+  border: 1px solid var(--gray60);
+  font-weight: 600;
+}
+
+/*.page-selection {*/
+/*  width: 48px;*/
+/*  height: 30px;*/
+/*  color: #337ab7;*/
+/*}*/
