@@ -19,6 +19,9 @@ export interface ICardSnippet {
     };
   };
   description: string;
+  resourceId: {
+    videoId: string;
+  };
 }
 
 export interface IPost {
