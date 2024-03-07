@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MutableRefObject } from 'react';
 import { CardType } from '../../types';
 import Card from '../Card';
 import * as S from './index.Style';
@@ -9,7 +9,7 @@ interface IProp {
 
 function Index({ data }: IProp) {
   return (
-    <S.Content>
+    <>
       {data
         .filter(el => el.snippet.title !== 'Private video')
         .map(item => (
@@ -23,7 +23,7 @@ function Index({ data }: IProp) {
             // thumbnail={item.thumbnail}
           />
         ))}
-    </S.Content>
+    </>
   );
 }
 

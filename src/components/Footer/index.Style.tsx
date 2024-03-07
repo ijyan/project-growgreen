@@ -45,7 +45,6 @@ export const Menu = styled.div`
 `;
 
 export const CopyRight = styled.p`
-  margin-top: 8rem;
   font-size: 14rem;
   color: var(--gray90);
 `;
