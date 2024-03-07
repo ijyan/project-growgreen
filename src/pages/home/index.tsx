@@ -78,15 +78,13 @@ export default function Index() {
             <br />
             건강한 습관을 만들어보세요.
           </S.Title>
-          <S.Content>
-            <S.ExerciseInner
-              ref={exerciseRef}
-              style={{ transform: `translateX(${-scrollPosition}px)` }}
-            >
-              <CardList data={exerciseData.slice(0, 20)} />
-              <CardList data={exerciseData.slice(0, 20)} />
-            </S.ExerciseInner>
-          </S.Content>
+          <S.ExerciseInner
+            ref={exerciseRef}
+            style={{ transform: `translateX(${-scrollPosition}px)` }}
+          >
+            <CardList data={exerciseData.slice(0, 20)} />
+            <CardList data={exerciseData.slice(0, 20)} />
+          </S.ExerciseInner>
         </S.Section>
         <S.Section>
           <S.Title>
@@ -94,60 +92,58 @@ export default function Index() {
             <br />
             일상을 공유해보세요.
           </S.Title>
-          <S.Content>
-            <S.CommunityInner>
-              <S.CommunityLink to="/community/questions">
-                <S.CommunityText>
-                  <h3>질문&고민</h3>
-                  <div>
-                    바로가기
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
-                        fill="#373f57"
-                      />
-                      <path
-                        d="M13.971 8.57861L13.2084 9.34121L15.7213 11.854L7.53825 11.8544L7.53826 12.9297L15.7213 12.9293L13.2085 15.4421L13.9711 16.2047L17.7842 12.3917L13.971 8.57861Z"
-                        fill="white"
-                      />
-                    </svg>
-                  </div>
-                </S.CommunityText>
-                <img src={ImgQustion} alt="질문&고민" />
-              </S.CommunityLink>
-              <S.CommunityLink to="/community/board">
-                <S.CommunityText>
-                  <h3>자유게시판</h3>
-                  <div>
-                    바로가기
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
-                        fill="#373f57"
-                      />
-                      <path
-                        d="M13.971 8.57861L13.2084 9.34121L15.7213 11.854L7.53825 11.8544L7.53826 12.9297L15.7213 12.9293L13.2085 15.4421L13.9711 16.2047L17.7842 12.3917L13.971 8.57861Z"
-                        fill="white"
-                      />
-                    </svg>
-                  </div>
-                </S.CommunityText>
-                <img src={ImgBoard} alt="질문&고민" />
-              </S.CommunityLink>
-            </S.CommunityInner>
-          </S.Content>
+          <S.CommunityInner>
+            <S.CommunityLink to="/community/questions">
+              <S.CommunityText>
+                <h3>질문&고민</h3>
+                <div>
+                  바로가기
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
+                      fill="#373f57"
+                    />
+                    <path
+                      d="M13.971 8.57861L13.2084 9.34121L15.7213 11.854L7.53825 11.8544L7.53826 12.9297L15.7213 12.9293L13.2085 15.4421L13.9711 16.2047L17.7842 12.3917L13.971 8.57861Z"
+                      fill="white"
+                    />
+                  </svg>
+                </div>
+              </S.CommunityText>
+              <img src={ImgQustion} alt="질문&고민" />
+            </S.CommunityLink>
+            <S.CommunityLink to="/community/board">
+              <S.CommunityText>
+                <h3>자유게시판</h3>
+                <div>
+                  바로가기
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
+                      fill="#373f57"
+                    />
+                    <path
+                      d="M13.971 8.57861L13.2084 9.34121L15.7213 11.854L7.53825 11.8544L7.53826 12.9297L15.7213 12.9293L13.2085 15.4421L13.9711 16.2047L17.7842 12.3917L13.971 8.57861Z"
+                      fill="white"
+                    />
+                  </svg>
+                </div>
+              </S.CommunityText>
+              <img src={ImgBoard} alt="질문&고민" />
+            </S.CommunityLink>
+          </S.CommunityInner>
         </S.Section>
       </main>
     </>

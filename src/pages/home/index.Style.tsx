@@ -21,59 +21,6 @@ export const Title = styled.h3`
   }
 `;
 
-export const Content = styled.div`
-  margin: 0 auto;
-  //display: flex;
-  //gap: 16rem;
-  //overflow-x: auto;
-  //flex-wrap: nowrap;
-  //position: relative;
-  //width: fit-content;
-
-  //& > div {
-  //  flex: 0 0 412rem;
-  //}
-
-  & div.clone {
-    //animation: 10s linear infinite normal none running infiniteAnimation2;
-  }
-
-  @keyframes infiniteAnimation1 {
-    0% {
-      transform: translateX(0%);
-    }
-    50% {
-      transform: translateX(-100%);
-    }
-    50.1% {
-      transform: translateX(100%);
-    }
-    100% {
-      transform: translateX(0%);
-    }
-  }
-  @keyframes infiniteAnimation2 {
-    0% {
-      transform: translateX(0%);
-    }
-    100% {
-      transform: translateX(-200%);
-    }
-  }
-`;
-
-export const Card = styled.div`
-  display: flex;
-  gap: 16rem;
-  width: fit-content;
-  flex-wrap: nowrap;
-  //animation: 10s linear infinite normal none running infiniteAnimation1;
-
-  & > div {
-    flex: 0 0 412rem;
-  }
-`;
-
 export const ExerciseInner = styled.div`
   display: flex;
   gap: 16rem;
