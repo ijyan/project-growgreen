@@ -10,6 +10,10 @@ import ImgBoard from '../../assets/images/img_board.png';
 export default function Index() {
   const [exerciseData, setExerciseData] = useState([]);
 
+  // 무한 스크롤
+  const exerciseRef = useRef<HTMLDivElement>(null);
+  const [scrollPosition, setScrollPosition] = useState<number>(0);
+
   useEffect(() => {
     // 운동 data
     const fetchData = async () => {
@@ -25,30 +29,8 @@ export default function Index() {
     fetchData();
   }, []);
 
-  const ref = useRef(null);
-  const refCard = useRef(null);
-  const [containerWidth, setWidth] = useState(false);
-  const [cardCount, setCardCount] = useState(0);
-  const [animationState, setPlay] = useState('paused');
-  const [animationSpeedState, setAnimationSpeedState] = useState(1);
-  const animationSpeedRatio = 1;
-  const windowWidth = window.innerWidth;
-
   useEffect(() => {
-    // if (refCard.current) {
-    //   setWidth(refCard.current.scrollWidth * exerciseData.length * 2);
-    //   setCardCount(Math.ceil(windowWidth / refCard.current.scrollWidth));
-    //   setAnimationSpeedState(exerciseData.length / animationSpeedRatio);
-    // }
-  }, []);
-
-  // console.log(refCard.current.scrollWidth);
-
-  const exerciseRef = useRef<HTMLDivElement>(null);
-  const [scrollPosition, setScrollPosition] = useState<number>(0);
-  // const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
-
-  useEffect(() => {
+    // 무한 스크롤
     const handleScroll = () => {
       const currentRef = exerciseRef.current;
       if (!currentRef) return;
@@ -56,7 +38,7 @@ export default function Index() {
       const { scrollWidth = 0, clientWidth = 0 } = currentRef;
       const maxScrollPosition = scrollWidth - clientWidth;
 
-      setScrollPosition(prev => (prev + 0.4) % Math.max(maxScrollPosition, 1));
+      setScrollPosition(prev => (prev + 0.2) % Math.max(maxScrollPosition, 1));
     };
 
     const intervalId = setInterval(handleScroll, 10); // 매 20밀리초마다 스크롤
@@ -82,8 +64,8 @@ export default function Index() {
             ref={exerciseRef}
             style={{ transform: `translateX(${-scrollPosition}px)` }}
           >
-            <CardList data={exerciseData.slice(0, 20)} />
-            <CardList data={exerciseData.slice(0, 20)} />
+            <CardList data={exerciseData.slice(0, 32)} />
+            <CardList data={exerciseData.slice(0, 32)} />
           </S.ExerciseInner>
         </S.Section>
         <S.Section>
