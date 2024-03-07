@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import SubTitle from '../../components/SubTitle';
 import CardList from '../../components/CardList';
+import * as S from './index.Style';
 
 function Index() {
   const [data, setData] = useState([]);
@@ -10,11 +11,9 @@ function Index() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // const response = await axios.get('/data/article.json');
         const response = await axios.get(
           `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLPPetu1spkebTXnDVnGtT0tYZV-6ocW4z&key=${process.env.REACT_APP_API_KEY}`,
         );
-
         setData(response.data.items);
       } catch (error) {
         console.error('데이터를 가져오는 중 오류 발생', error);
@@ -31,8 +30,9 @@ function Index() {
         </Helmet>
       </HelmetProvider>
       <SubTitle>운동</SubTitle>
-      {/* <Tab links={EXERCISE_LIST} index={0} /> */}
-      <CardList data={data} />
+      <S.Content>
+        <CardList data={data} />
+      </S.Content>
     </>
   );
 }

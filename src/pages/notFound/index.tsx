@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './index.Style';
-import Img from '../../assets/images/not-found.jpg';
+import Img from '../../assets/images/not_found.jpg';
 
 // 404 에러 페이지
 export default function Index() {

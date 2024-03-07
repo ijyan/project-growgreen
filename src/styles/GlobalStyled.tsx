@@ -93,6 +93,10 @@ const GlobalStyled = createGlobalStyle`
     --coral120: #b81d1d;
   }
 
+  ::selection {
+    background-color: #cbdeff;
+  }
+
   * {
     box-sizing: border-box;
   }

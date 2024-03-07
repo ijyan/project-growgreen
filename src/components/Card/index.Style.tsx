@@ -24,7 +24,6 @@ export const Title = styled.h3`
   font-weight: 600;
   letter-spacing: -1rem;
   font-size: 24rem;
-  overflow: hidden;
   ${common.ellipsis}
   -webkit-line-clamp: 2;
   margin: 0 0 8rem;
@@ -53,4 +52,5 @@ export const ImgWrap = styled.div`
 
 export const TextWrap = styled.div`
   padding: 24rem 32rem 40rem;
+  background-color: #fff;
 `;
