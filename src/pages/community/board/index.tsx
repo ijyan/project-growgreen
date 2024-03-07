@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import SubTitle from '../../../components/SubTitle';
 import Tab from '../../../components/Tab';
 import { COMMUNITY_LIST } from '../../../constants/CommunityMenu';
@@ -9,6 +9,8 @@ import usePostStore from '../../../stores/posts.store';
 import Input from '../../../components/Input';
 import PostList from '../../../components/Post/PostList';
 import useUserStore from '../../../stores/user.store';
+import Pagination from '../../../components/Pagination';
+import { IPost } from '../../../types';
 
 // 자유게시판 페이지
 export default function Index() {
@@ -29,10 +31,37 @@ export default function Index() {
   const { user } = useUserStore();
   const navigate = useNavigate();
 
+  // 페이징
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialPage =
+    searchParams.get('page') === null ? '1' : searchParams.get('page');
+  const [currentPost, setCurrentPost] = useState<IPost[]>([]);
+  const [activePage, setActivePage] = useState(Number(initialPage));
+
+  const itemsPerPage = 10;
+  const indexOfLastPost: number = activePage * itemsPerPage;
+  const indexOfFirstPost: number = indexOfLastPost - itemsPerPage;
+
   useEffect(() => {
+    // 데이터 불러오기
     fetchPosts();
-    resetActiveButton();
+    resetActiveButton(); // 정렬 초기화
   }, [fetchPosts, resetActiveButton]);
+
+  useEffect(() => {
+    // 페이징: 현재 페이지에 나타낼 데이터
+    setCurrentPost(
+      posts
+        .filter(item => item.sub_category === '자유게시판')
+        .slice(indexOfFirstPost, indexOfLastPost),
+    );
+  }, [posts, indexOfLastPost, indexOfFirstPost]);
+
+  const handlePageChange = (pageNumber: number) => {
+    // 페이징: active 페이지
+    setActivePage(pageNumber);
+    navigate(`/community/board?page=${pageNumber}`);
+  };
 
   const handleSearch = () => {
     if (searchTerm.trim() === '') {
@@ -63,11 +92,7 @@ export default function Index() {
       <S.Content>
         <S.SearchForm>
           <S.ListNum>
-            전체{' '}
-            <strong>
-              {posts.filter(item => item.sub_category === '자유게시판').length}
-            </strong>
-            건
+            전체 <strong>{currentPost.length}</strong>건
           </S.ListNum>
           <S.InputBox>
             <Input
@@ -235,9 +260,21 @@ export default function Index() {
               </div>
             </S.NotFound>
           ) : (
-            <PostList
-              data={posts.filter(item => item.sub_category === '자유게시판')}
-            />
+            <>
+              <PostList data={currentPost} />
+              <Pagination
+                activePage={activePage}
+                itemsCountPerPage={itemsPerPage}
+                totalItemsCount={
+                  posts.filter(item => item.sub_category === '자유게시판')
+                    .length
+                }
+                pageRangeDisplayed={10}
+                prevPageText="이전"
+                nextPageText="다음"
+                onChange={handlePageChange}
+              />
+            </>
           )}
         </S.List>
       </S.Content>

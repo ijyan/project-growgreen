@@ -11,6 +11,10 @@ ul {
   padding: 0;
 }
 
+ul.pagination li.disabled {
+  display: none;
+}
+
 ul.pagination li:first-child,
 ul.pagination li:last-child {
   display: none;

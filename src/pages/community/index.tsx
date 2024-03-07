@@ -43,17 +43,18 @@ function Index() {
   const indexOfFirstPost: number = indexOfLastPost - itemsPerPage;
 
   useEffect(() => {
+    // 데이터 불러오기
     fetchPosts();
-    resetActiveButton();
+    resetActiveButton(); // 정렬 초기화
   }, [fetchPosts, resetActiveButton]);
 
-  // 현재 페이지에 나타낼 데이터
   useEffect(() => {
+    // 페이징: 현재 페이지에 나타낼 데이터
     setCurrentPost(posts.slice(indexOfFirstPost, indexOfLastPost));
   }, [posts, indexOfLastPost, indexOfFirstPost]);
 
-  // active 페이지
   const handlePageChange = (pageNumber: number) => {
+    // 페이징: active 페이지
     setActivePage(pageNumber);
     navigate(`/community?page=${pageNumber}`);
   };
