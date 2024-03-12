@@ -2,18 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { findAllByRole } from '@testing-library/react';
 import * as S from './index.Style';
 import { IPost } from '../../../types';
 import usePostStore from '../../../stores/posts.store';
 import useUserStore from '../../../stores/user.store';
 import Loading from '../../Loading';
+import Comment from '../../Comment';
+import useCommentStore from '../../../stores/comments.store';
 
 function Index() {
   const { postId } = useParams();
   const [post, setPost] = useState<IPost | undefined>(undefined);
   const { posts, setPosts, fetchPosts } = usePostStore();
   const { user } = useUserStore();
+  const { comments, fetchComments } = useCommentStore();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,8 +30,9 @@ function Index() {
       }
     };
     fetchPosts();
+    fetchComments();
     fetchData();
-  }, [postId, fetchPosts]);
+  }, [fetchComments, postId, fetchPosts]);
 
   if (!post) {
     return <Loading />;
@@ -192,7 +195,8 @@ function Index() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                {post.comment_count}
+                {/* {post.comment_count} */}
+                {comments.filter(item => item.postId === postId).length}
               </span>
               <span>
                 <svg
@@ -251,6 +255,7 @@ function Index() {
             </button>
           </S.VoteCount>
         </S.Inner>
+        <Comment />
       </S.Container>
     </>
   );
