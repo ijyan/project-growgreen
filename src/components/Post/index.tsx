@@ -1,7 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import * as S from './index.Style';
 import { IPost } from '../../types';
+import useCommentStore from '../../stores/comments.store';
 
 function Index({
   id,
@@ -36,6 +37,12 @@ function Index({
 
     return `${new Date(date).toLocaleDateString()}`;
   };
+
+  const { fetchComments, comments } = useCommentStore();
+
+  useEffect(() => {
+    fetchComments();
+  }, [fetchComments]);
 
   return (
     <S.Wrapper>
@@ -107,7 +114,11 @@ function Index({
                   strokeLinejoin="round"
                 />
               </svg>
-              댓글 <strong>{comment_count}</strong>
+              댓글{' '}
+              <strong>
+                {/* {comment_count} */}
+                {comments.filter(item => item.postId === id).length}
+              </strong>
             </span>
             <span>
               <svg

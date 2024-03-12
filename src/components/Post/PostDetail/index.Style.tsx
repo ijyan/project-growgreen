@@ -116,3 +116,7 @@ export const VoteCount = styled.div`
     }
   }
 `;
+
+export const CommentBox = styled.div`
+  display: block;
+`;

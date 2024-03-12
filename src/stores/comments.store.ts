@@ -1,10 +1,10 @@
 import { create } from 'zustand';
 import axios from 'axios';
-import { IPost } from '../types';
+import { IComment } from '../types';
 
 interface CommentStore {
-  comments: IPost[];
-  setComment: (comment: IPost) => void;
+  comments: IComment[];
+  setComment: (comment: IComment) => void;
   loading: boolean;
   error: string | null;
   fetchComments: () => void;
@@ -19,7 +19,7 @@ const useCommentStore = create<CommentStore>(set => ({
   fetchComments: async () => {
     try {
       set({ loading: true, error: null });
-      const response = await axios.get<IPost[]>(
+      const response = await axios.get<IComment[]>(
         'http://localhost:5000/comments',
       );
       set({ comments: response.data });

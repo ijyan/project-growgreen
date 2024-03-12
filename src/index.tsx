@@ -51,6 +51,7 @@ const router = createBrowserRouter([
       { index: true, path: '/', element: <Home /> },
       { path: '/login', element: <Login /> },
       { path: '/join', element: <Join /> },
+      { path: '/comments/:commentId' },
       {
         path: '/exercise',
         element: <Exercise />,

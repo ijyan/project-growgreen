@@ -63,3 +63,12 @@ export interface IUser {
   email: string;
   avatar: string;
 }
+
+export interface IComment {
+  id: string;
+  postId: string;
+  userId: string;
+  nickName: string;
+  avatar: string;
+  content: string;
+}
