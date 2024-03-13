@@ -20,7 +20,7 @@ function Index() {
   const [currentPost, setCurrentPost] = useState<IPost[]>([]);
   const [activePage, setActivePage] = useState(Number(initialPage));
   const navigate = useNavigate();
-  const itemsPerPage = 10;
+  const itemsPerPage = 6;
   const indexOfLastPost: number = activePage * itemsPerPage;
   const indexOfFirstPost: number = indexOfLastPost - itemsPerPage;
 
@@ -42,6 +42,7 @@ function Index() {
     setActivePage(pageNumber);
     navigate(`/my-page/posts?page=${pageNumber}`);
   };
+  console.log(posts, user?.userId);
 
   return (
     <>
@@ -53,10 +54,51 @@ function Index() {
       <S.Container>
         <S.ContainerInner>
           <MyPageTabs index={1} />
-          <S.Content>
-            <S.Posts>
-              {user &&
-                currentPost
+          {posts.filter(item => item.userId === user?.userId).length === 0 ? (
+            <S.NotFound>
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 48 48"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 44H38C39.1046 44 40 43.1046 40 42V14H30V4H10C8.89543 4 8 4.89543 8 6V42C8 43.1046 8.89543 44 10 44Z"
+                  fill="none"
+                  stroke="#5c667b"
+                  strokeWidth="3"
+                  strokeLinecap="butt"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M30 4L40 14"
+                  stroke="#5c667b"
+                  strokeWidth="3"
+                  strokeLinecap="butt"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M18 22L30 34"
+                  stroke="#5c667b"
+                  strokeWidth="3"
+                  strokeLinecap="butt"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M30 22L18 34"
+                  stroke="#5c667b"
+                  strokeWidth="3"
+                  strokeLinecap="butt"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <div>작성한 게시물이 없어요.</div>
+            </S.NotFound>
+          ) : (
+            <S.Content>
+              <S.Posts>
+                {currentPost
                   // .filter(el => el.userId === user.userId)
                   .map(item => (
                     <S.PostWrapper key={item.id}>
@@ -133,17 +175,20 @@ function Index() {
                       </Link>
                     </S.PostWrapper>
                   ))}
-            </S.Posts>
-            <Pagination
-              activePage={activePage}
-              itemsCountPerPage={itemsPerPage}
-              totalItemsCount={posts.length}
-              pageRangeDisplayed={10}
-              prevPageText="이전"
-              nextPageText="다음"
-              onChange={handlePageChange}
-            />
-          </S.Content>
+              </S.Posts>
+              <Pagination
+                activePage={activePage}
+                itemsCountPerPage={itemsPerPage}
+                totalItemsCount={
+                  posts.filter(item => item.userId === user?.userId).length
+                }
+                pageRangeDisplayed={6}
+                prevPageText="이전"
+                nextPageText="다음"
+                onChange={handlePageChange}
+              />
+            </S.Content>
+          )}
         </S.ContainerInner>
       </S.Container>
     </>

@@ -87,3 +87,21 @@ export const Util = styled.div`
     }
   }
 `;
+
+export const NotFound = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 150rem 0;
+  text-align: center;
+  color: var(--gray90);
+  font-weight: 500;
+  gap: 20rem;
+
+  & span {
+    display: block;
+    font-size: 14rem;
+    margin-top: 4rem;
+  }
+`;
