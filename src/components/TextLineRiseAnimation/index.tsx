@@ -15,7 +15,7 @@ function Index({ text, delay = 0 }: LineRiseAnimationProps) {
     if (lineRef.current) {
       gsap.fromTo(
         lineRef.current,
-        { y: 100, opacity: 0, pin: true, scrub: true },
+        { y: 100, opacity: 0 },
         {
           y: 0,
           opacity: 1,

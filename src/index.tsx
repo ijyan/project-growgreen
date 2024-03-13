@@ -22,7 +22,6 @@ import Board from './pages/community/board';
 // 마이페이지
 import MyPage from './pages/myPage';
 import Profile from './pages/myPage/profile';
-import Comment from './pages/myPage/comment';
 import MyPosts from './pages/myPage/posts';
 
 // 게시글
@@ -99,10 +98,6 @@ const router = createBrowserRouter([
           {
             path: 'profile',
             element: <Profile />,
-          },
-          {
-            path: 'comment',
-            element: <Comment />,
           },
           {
             path: 'posts',

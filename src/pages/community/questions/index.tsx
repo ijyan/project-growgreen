@@ -64,8 +64,6 @@ export default function Index() {
     navigate(`/community/questions?page=${pageNumber}`);
   };
 
-  console.log(currentPost);
-
   const handleSearch = () => {
     if (searchTerm.trim() === '') {
       setPosts(originalPosts);
