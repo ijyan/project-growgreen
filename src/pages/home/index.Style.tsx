@@ -1,10 +1,28 @@
 import { styled } from 'styled-components';
 import { Link } from 'react-router-dom';
-import { common } from '../../styles/theme';
+
+export const SectionVisual = styled.div`
+  margin: 80rem 0;
+  clip-path: inset(0 calc((100% - 580rem) / 2) round 20rem);
+  height: 100vh;
+`;
+
+export const VisualTitle = styled.div`
+  font-size: 60rem;
+  margin: 80rem 0;
+  text-align: center;
+  font-weight: 700;
+  color: var(--gray130);
+`;
 
 export const Section = styled.section`
-  overflow: visible;
   margin: 160rem 0;
+  overflow: hidden;
+
+  &.card > div > div {
+    box-shadow: none;
+    background-color: var(--gray20);
+  }
 `;
 
 export const Title = styled.h3`

@@ -6,6 +6,7 @@ export const Card = styled.div`
   transition: all 0.3s ease;
   border-radius: 24rem;
   overflow: hidden;
+  background-color: #fff;
 
   & a {
     display: block;
@@ -52,5 +53,4 @@ export const ImgWrap = styled.div`
 
 export const TextWrap = styled.div`
   padding: 24rem 32rem 40rem;
-  background-color: #fff;
 `;

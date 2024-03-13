@@ -1,10 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 import axios from 'axios';
 import * as S from './index.Style';
 import CardList from '../../components/CardList';
 import ImgQustion from '../../assets/images/img_question.png';
 import ImgBoard from '../../assets/images/img_board.png';
+import TextLineRiseAnimation from '../../components/TextLineRiseAnimation';
 
 // 홈 화면 페이지
 export default function Index() {
@@ -46,6 +49,32 @@ export default function Index() {
     return () => clearInterval(intervalId);
   }, [scrollPosition]);
 
+  // SectionVisual
+  const divRef = useRef<HTMLDivElement>(null); // 비디오 요소를 참조하기 위한 ref
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const element = divRef.current;
+    if (element) {
+      ScrollTrigger.create({
+        trigger: element,
+        start: 'top top',
+        end: 'bottom top',
+        pin: true,
+        scrub: true,
+        markers: false,
+        onUpdate: self => {
+          const clipPath = `inset(0 calc(${1 - self.progress} * ((100% - 580rem) / 2)) round calc(${1 - self.progress} * 20rem)`;
+          gsap.set(element, { clipPath });
+        },
+      });
+    }
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill()); // 언마운트 시 ScrollTrigger 인스턴스 제거
+    };
+  }, []);
+
   return (
     <>
       <HelmetProvider>
@@ -54,11 +83,27 @@ export default function Index() {
         </Helmet>
       </HelmetProvider>
       <main>
-        <S.Section>
+        <div>
+          <S.VisualTitle>당신의 건강한 변화를 위해</S.VisualTitle>
+          <S.SectionVisual ref={divRef}>
+            {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+            <video width="100%" loop autoPlay muted>
+              <source src="/video/main_video01.mp4" type="video/mp4" />
+            </video>
+          </S.SectionVisual>
+        </div>
+        <S.Section className="card">
           <S.Title>
-            간단한 운동으로
-            <br />
-            건강한 습관을 만들어보세요.
+            {['간단한 운동으로', '건강한 습관을 만들어보세요.'].map(
+              (line, index) => (
+                <TextLineRiseAnimation
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={index}
+                  text={line}
+                  delay={index * 0.3}
+                />
+              ),
+            )}
           </S.Title>
           <S.ExerciseInner
             ref={exerciseRef}
@@ -70,9 +115,16 @@ export default function Index() {
         </S.Section>
         <S.Section>
           <S.Title>
-            다이어터들과 이야기를 나누고
-            <br />
-            일상을 공유해보세요.
+            {['다이어터들과 이야기를 나누고', '일상을 공유해보세요.'].map(
+              (line, index) => (
+                <TextLineRiseAnimation
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={index}
+                  text={line}
+                  delay={index * 0.3}
+                />
+              ),
+            )}
           </S.Title>
           <S.CommunityInner>
             <S.CommunityLink to="/community/questions">
