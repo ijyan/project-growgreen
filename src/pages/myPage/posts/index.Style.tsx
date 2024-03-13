@@ -18,10 +18,14 @@ export const ContainerInner = styled.div`
 export const Content = styled.div`
   border-left: 1px solid var(--gray40);
   padding-left: 80rem;
+  width: 100%;
+`;
+
+export const Posts = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12rem;
-  min-height: 0; /* NEW */
+  min-height: 0;
   min-width: 0;
 `;
 
@@ -34,6 +38,7 @@ export const PostWrapper = styled.div`
     border: 1px solid var(--gray30);
     padding: 24rem;
     border-radius: 8rem;
+    height: 100%;
 
     &:hover h3 {
       text-decoration: underline;
@@ -61,6 +66,7 @@ export const Desc = styled.span`
   font-size: 14rem;
   line-height: 20rem;
   margin-top: 12rem;
+  height: 40rem;
 `;
 
 export const Util = styled.div`
