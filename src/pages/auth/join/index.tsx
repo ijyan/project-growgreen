@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import * as S from './index.Style';
 import Input from '../../../components/Input';
+import { User } from '../../../types';
 
 // ! 회원가입
 
@@ -21,6 +22,7 @@ function Index() {
   const passwordRegExp =
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/;
   const emailRegExp = /^([a-z0-9_.-]+)@([\da-z.-]+)\.([a-z.]{2,6})$/;
+  const [user, setUser] = useState<User[] | null>(null);
   const [formData, setFormData] = useState({
     userId: '',
     password: '',
@@ -54,6 +56,18 @@ function Index() {
       });
     };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get<User[]>(`http://localhost:5000/users`);
+        setUser(response.data);
+      } catch (error) {
+        console.error('Error fetching post', error);
+      }
+    };
+    fetchData();
+  }, [setUser]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -70,6 +84,8 @@ function Index() {
       newErrors.userId = '아이디를 입력해주세요.';
     } else if (!idRegExp.test(formData.userId)) {
       newErrors.userId = "4~15자의 영문, 숫자와 특수문자 '_'만 사용해주세요.";
+    } else if (user?.some(el => el.userId === formData.userId)) {
+      newErrors.userId = '중복된 아이디입니다.';
     }
 
     if (!formData.password) {
@@ -85,6 +101,8 @@ function Index() {
 
     if (!formData.nickName) {
       newErrors.nickName = '닉네임을 입력하세요.';
+    } else if (user?.some(el => el.nickName === formData.nickName)) {
+      newErrors.nickName = '중복된 닉네임입니다.';
     }
 
     if (!formData.email) {

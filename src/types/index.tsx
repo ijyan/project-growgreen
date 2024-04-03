@@ -1,6 +1,4 @@
 // TypeScript 타입 정의와 인터페이스를 보관
-import subTitle from '../components/SubTitle';
-
 export interface CardType {
   id: number;
   categoryId?: number;
@@ -52,16 +50,6 @@ export interface FormData {
   name: string;
   email: string;
   nickName: string;
-}
-
-export interface IUser {
-  id: number;
-  userId: string;
-  name: string;
-  nickName: string;
-  password: string;
-  email: string;
-  avatar: string;
 }
 
 export interface IComment {
