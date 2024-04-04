@@ -39,6 +39,11 @@ export const Logo = styled.h1`
     display: flex;
     align-items: center;
   }
+
+  & img {
+    width: 168rem;
+    height: 50rem;
+  }
 `;
 
 export const ButtonWrapper = styled.div`
