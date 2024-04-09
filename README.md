@@ -1,4 +1,8 @@
 # GrowGreen
+https://project-growgreen.netlify.app/
+
+- 테스트 ID: test
+- 테스트 PW: testtest1!
 
 ## 프로젝트 소개
 
