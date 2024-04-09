@@ -73,7 +73,7 @@ function Index() {
 
     try {
       const response = await axios.post<IComment>(
-        'http://localhost:5000/comments',
+        `${process.env.REACT_APP_SERVER_URL}/comments`,
         {
           ...formData,
         },
@@ -92,9 +92,11 @@ function Index() {
     if (!userConfirmed) return;
 
     try {
-      await axios.delete(`http://localhost:5000/comments/${id}`).then(() => {
-        alert('삭제되었습니다.');
-      });
+      await axios
+        .delete(`${process.env.REACT_APP_SERVER_URL}/comments/${id}`)
+        .then(() => {
+          alert('삭제되었습니다.');
+        });
       fetchComments();
     } catch (error) {
       console.error('Error deleting comments:', error);

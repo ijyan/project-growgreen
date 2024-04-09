@@ -70,7 +70,7 @@ function Index() {
     const fetchUser = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/users/${user?.id}`,
+          `${process.env.REACT_APP_SERVER_URL}/users/${user?.id}`,
         );
         previousFormDataRef.current = { ...response.data };
       } catch (error) {
@@ -78,16 +78,6 @@ function Index() {
       }
     };
 
-    // // const fetchPost = async () => {
-    // //   try {
-    // //     const response = await axios.get(`http://localhost:5000/posts`);
-    // //     setPosts(response.data);
-    // //   } catch (error) {
-    // //     console.error('Get FetchPost failed: ', error);
-    // //   }
-    // // };
-
-    // fetchPost();
     fetchUser();
   }, [user?.id, setPosts]);
 
@@ -173,21 +163,10 @@ function Index() {
       // 서버에 업데이트 요청
       const updateNewUser = { ...user, ...updates };
 
-      const response = await axios.put(
-        `http://localhost:5000/users/${user.id}`,
+      await axios.put(
+        `${process.env.REACT_APP_SERVER_URL}/users/${user.id}`,
         updateNewUser,
       );
-
-      // TODO: 작업 필요
-      // updateUserPost(user.userId, formData.nickName, formData.avatar);
-
-      // const responseForm = await axios.patch(
-      //   `http://localhost:5000/posts?userId=${user.userId}`,
-      //   { nickName: formData.nickName, avatar: profileImage },
-      //   { headers: { 'Content-Type': 'application/json' } },
-      // );
-
-      // console.log('회원정보 수정 성공: ', response.data);
     } catch (error) {
       console.error('Update failed: ', error);
     }

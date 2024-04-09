@@ -20,7 +20,7 @@ const useCommentStore = create<CommentStore>(set => ({
     try {
       set({ loading: true, error: null });
       const response = await axios.get<IComment[]>(
-        'http://localhost:5000/comments',
+        `${process.env.REACT_APP_SERVER_URL}/comments`,
       );
       set({ comments: response.data });
     } catch (error) {

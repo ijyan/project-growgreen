@@ -22,7 +22,7 @@ function Index() {
     const fetchData = async () => {
       try {
         const response = await axios.get<IPost>(
-          `http://localhost:5000/posts/${postId}`,
+          `${process.env.REACT_APP_SERVER_URL}/posts/${postId}`,
         );
         setPost(response.data);
       } catch (error) {
@@ -44,7 +44,10 @@ function Index() {
         ...post,
         vote_count: post.vote_count + 1,
       };
-      await axios.patch(`http://localhost:5000/posts/${postId}`, updateCount);
+      await axios.patch(
+        `${process.env.REACT_APP_SERVER_URL}/posts/${postId}`,
+        updateCount,
+      );
       setPost(updateCount);
     } catch (error) {
       console.log('Update Count Error: ', error);
@@ -84,9 +87,13 @@ function Index() {
     if (!userConfirmed) return;
 
     try {
-      await axios.delete(`http://localhost:5000/posts/${postId}`).then(() => {
-        alert('삭제되었습니다.');
-      });
+      await axios
+        .delete(
+          `${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_SERVER_URL}/posts/${postId}`,
+        )
+        .then(() => {
+          alert('삭제되었습니다.');
+        });
       const updatedPosts = posts.filter(item => item.id !== id);
       setPosts(updatedPosts);
       navigate(-1);

@@ -59,7 +59,9 @@ function Index() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get<User[]>(`http://localhost:5000/users`);
+        const response = await axios.get<User[]>(
+          `${process.env.REACT_APP_SERVER_URL}/users`,
+        );
         setUser(response.data);
       } catch (error) {
         console.error('Error fetching post', error);
@@ -120,14 +122,17 @@ function Index() {
 
     try {
       // json-server에서 제공하는 REST API 엔드포인트를 사용합니다.
-      const response = await axios.post('http://localhost:5000/users', {
-        userId: formData.userId,
-        password: formData.password,
-        name: formData.name,
-        nickName: formData.nickName,
-        email: formData.email,
-        avatar: formData.avatar,
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/users`,
+        {
+          userId: formData.userId,
+          password: formData.password,
+          name: formData.name,
+          nickName: formData.nickName,
+          email: formData.email,
+          avatar: formData.avatar,
+        },
+      );
 
       // 성공적인 회원가입 후의 로직
       setIsSuccess(true);

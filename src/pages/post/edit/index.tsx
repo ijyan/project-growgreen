@@ -37,7 +37,7 @@ function Index() {
     const fetchData = async () => {
       try {
         const response = await axios.get<IPost>(
-          `http://localhost:5000/posts/${postId}`,
+          `${process.env.REACT_APP_SERVER_URL}/posts/${postId}`,
         );
 
         // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -113,7 +113,7 @@ function Index() {
 
     try {
       const response = await axios.patch(
-        `http://localhost:5000/posts/${postId}`,
+        `${process.env.REACT_APP_SERVER_URL}/posts/${postId}`,
         {
           ...formData,
           update_at: new Date().getTime(),

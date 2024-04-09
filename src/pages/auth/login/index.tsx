@@ -73,7 +73,9 @@ function Index() {
     // 로그인
     try {
       // 사용자 목록을 가져옵니다.
-      const usersResponse = await axios.get('http://localhost:5000/users');
+      const usersResponse = await axios.get(
+        `${process.env.REACT_APP_SERVER_URL}/users`,
+      );
       const users = usersResponse.data;
 
       // 입력된 userId와 password가 일치하는 사용자를 찾습니다.

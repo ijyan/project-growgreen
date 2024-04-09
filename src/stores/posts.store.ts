@@ -35,7 +35,9 @@ const usePostStore = create<PostStore>(set => ({
   fetchPosts: async () => {
     try {
       set({ loading: true, error: null });
-      const response = await axios.get<IPost[]>('http://localhost:5000/posts');
+      const response = await axios.get<IPost[]>(
+        `${process.env.REACT_APP_SERVER_URL}/posts`,
+      );
       const sortedPosts = response.data.sort(
         (a, b) =>
           new Date(b.create_at).getTime() - new Date(a.create_at).getTime(),
